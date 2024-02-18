@@ -1,8 +1,8 @@
-# versevo-ai
+# versevo-ai 🤖💻
 
 **Project-Description: _Write Here_**
 
-## Documentation:
+## Documentation 📋
 
 ## Commit Methods:
 
@@ -34,6 +34,6 @@
   bug: commit-message
 ```
 
-## Social Handles :
+## Social Handles 🧑‍🚀
 
 
