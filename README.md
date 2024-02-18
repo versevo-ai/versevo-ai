@@ -6,6 +6,12 @@
 
 ## Commit Methods:
 
+ - Add (Not Features but some specific files/modules/chunk of code):
+   
+```bash
+  add: commit-message
+```
+
  - Fix:
    
 ```bash
