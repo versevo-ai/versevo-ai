@@ -4,6 +4,12 @@
 
 ## Documentation 📋
 
+## WorkFlow ⬇️ ⬆️
+ - **Development (Base Branch)** : This branch is made for all the tasks , done from scratch . 
+         Push all your code in this branch IF IT IS ERROR PRONE OR CAN BE MODIFIED.
+ - **Stage (Testing Branch)** : From Development , when the codes are fixed and checked , it will be pushed in this branch. In this branch , all kinds of rigorous    testing (especially with the production variables) will be done on the code. If error comes , that portion will be taken back and corrected in **Development** branch.
+ - **Production (Final Branch)** : After every trial of testing , error-checking and fine-tuning, when the product will be top-notch and working properly with the  environment variables , it will be pushed to this branch.
+
 ## Commit Methods:
 
  - Add (Not Features but some specific files/modules/chunk of code):
