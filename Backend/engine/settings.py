@@ -86,6 +86,9 @@ CORS_ALLOW_HEADERS = (
 
 ROOT_URLCONF = 'engine.urls'
 
+# Registering My custom User Model
+AUTH_USER_MODEL = 'users.NewUser'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
