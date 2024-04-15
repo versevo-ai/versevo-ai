@@ -1,5 +1,4 @@
 from django.db import models
-from users.models import newUser
 from engine.settings import AUTH_USER_MODEL
 
 # Create your models here.
