@@ -3,6 +3,10 @@ from django.core.exceptions import ValidationError
 from .models import services
 
 class ServiceModelSerializer:
+    
+    '''
+    This Serializer is used to Serialize Raw Data of Services Model into REST API (JSON)
+    '''
     def __init__(self,username,money,text_to_speech,speech_to_text,speech_to_speech) -> None:
         self.model = services
         self.username = username

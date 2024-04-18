@@ -7,6 +7,11 @@ import os
 load_dotenv()
 
 class UserModelSerializer:
+    
+    '''
+    This Serializer is used to Serialize Raw User's Data into REST API (JSON).
+    But before going to serialize , the raw data undergoes several Validation Checks.
+    '''
     def __init__(self,username,email,password,first_name,last_name) -> None:
         self.model = NewUser
         self.username = username
@@ -14,25 +19,32 @@ class UserModelSerializer:
         self.password = password
         self.first_name = first_name
         self.last_name = last_name
+        self.flag = True
 
         if self.username:
             if self.model.objects.filter(username = self.username).count()==1:
+                self.flag = False
                 raise ValidationError(f"Username already exists")
         else:
+            self.flag = False
             raise ValidationError("Username Can't be Empty")
         
         
         if self.email:
             if self.model.objects.filter(email = self.email).count()==1:
+                self.flag = False
                 raise ValidationError(f"Email already exists")
         else:
+            self.flag = False
             raise ValidationError("Email Can't be Empty")
         
         
         if self.password:
             if self.model.objects.filter(password = self.password).count()==1:
+                self.flag = False
                 raise ValidationError(f"This Password is already Chosen")
         else:
+            self.flag = False
             raise ValidationError("Password Can't be Empty")
     
     def Get_Jwt_Tokens(self) -> dict:
