@@ -2,7 +2,9 @@ from django.urls import path , include
 from users.views import *
 from services.views import *
 
-# urlpatterns = [
-#     path('users/',include('users.urls')),
-#     path('services/',include('services.urls')),
-# ]
+# will have class based views , so will put classnames.as_view() instead of include
+
+urlpatterns = [
+    path('users/',userViews.as_view()),
+    # path('services/',include('services.urls')),
+]
