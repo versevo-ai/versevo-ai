@@ -1,17 +1,20 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm, ValidationError
 from .models import NewUser
+from django.contrib.auth.forms import PasswordChangeForm
 
 class UserForm(UserCreationForm):
     
     class Meta(UserCreationForm.Meta):
         model = NewUser
-        fields = UserCreationForm.Meta.fields + ("username","Bearer_Token","Refresh_Token","Blacklisted",)
+        fields = UserCreationForm.Meta.fields + ("username",)
     
     def clean_password2(self) -> str:
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
+        if (not password1) or (not password2):
+            raise ValidationError("Password Field Can't be Empty")
+        elif password1 != password2:
             raise ValidationError("Passwords don't match")
         return password2
     
