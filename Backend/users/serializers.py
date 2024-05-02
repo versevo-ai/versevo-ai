@@ -12,7 +12,7 @@ class UserModelSerializer:
     This Serializer is used to Serialize Raw User's Data into REST API (JSON).
     But before going to serialize , the raw data undergoes several Validation Checks.
     '''
-    def __init__(self,username,email,password,first_name,last_name) -> None:
+    def __init__(self,username,email,password,first_name=None,last_name=None) -> None:
         self.username = username
         self.email = email
         self.password = password
