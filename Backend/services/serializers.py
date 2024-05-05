@@ -8,7 +8,6 @@ class ServiceModelSerializer:
     This Serializer is used to Serialize Raw Data of Services Model into REST API (JSON)
     '''
     def __init__(self,username,money,text_to_speech,speech_to_text,speech_to_speech) -> None:
-        self.model = services
         self.username = username
         self.money = money
         self.text_to_speech = text_to_speech
@@ -17,7 +16,7 @@ class ServiceModelSerializer:
 
     
     def create_service_api(self):
-        serve_obj = self.model.objects.create(
+        serve_obj = services.objects.create(
             username = self.username , money = self.money , text_to_speech = self.text_to_speech , speech_to_text = self.speech_to_text , speech_to_speech = self.speech_to_speech  
         )
         service_api = serialize("json",serve_obj)
@@ -25,7 +24,7 @@ class ServiceModelSerializer:
     
     
     def update_service_api(self,username):
-        serve_obj = self.model.objects.get(username = username)
+        serve_obj = services.objects.get(username = username)
         if serve_obj.username != self.username:
             serve_obj.username = self.username
             
