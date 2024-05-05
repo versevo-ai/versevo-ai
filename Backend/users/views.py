@@ -1,15 +1,16 @@
-from django.http import HttpResponse
 from django.views import View
 from .serializers import *
 from .models import *
 from .forms import *
 from django.core.serializers import serialize
 from django.contrib.auth import update_session_auth_hash , get_user_model
+from django.contrib.auth import login ,authenticate , logout
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class userViews(View):
+class userViews(LoginRequiredMixin , View):
 
     def get(self,request,username):
         
@@ -46,6 +47,8 @@ class userViews(View):
             )
             if raw_user_data.is_valid():
                 obj = raw_user_data.create_user_api()
+                user_obj = NewUser.objects.filter(username = fetched_data.get("username")).all()
+                login(request,user_obj)
                 return obj
             else:
                 return raw_user_data.messagestack
@@ -67,18 +70,19 @@ class userViews(View):
                 return raw_user_data.messagestack
     
     
-    # def delete(self,request):
-    #     '''
-    #     Method to DELETE an user's data
-    #     '''
-    #     uname = request.user.username
-    #     NewUser.objects.filter(username = uname).all().delete()
-    #     return {
-    #         "Message" : f"User object of username {uname} is deleted"
-    #     }
+    def delete(self,request):
+        '''
+        Method to DELETE an user's data
+        '''
+        uname = request.user.username
+        NewUser.objects.filter(username = uname).all().delete()
+        logout(request)
+        return {
+            "Message" : f"User object of username {uname} is deleted"
+        }
     
 
-class PasswordView(View):
+class PasswordView(LoginRequiredMixin , View):
     
     def patch(self , request):
         form = PasswordChangeForm(user=request.user, data=request.POST)
