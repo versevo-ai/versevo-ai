@@ -1,32 +1,48 @@
 from django.views import View
 from .serializers import *
 from .models import *
+from services.models import *
 from .forms import *
 from django.core.serializers import serialize
-from django.contrib.auth import update_session_auth_hash , get_user_model
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login ,authenticate , logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+import jwt
 
 # Create your views here.
 
-class userViews(LoginRequiredMixin , View):
+class userViews(View):
 
     def get(self,request,username):
         
         '''
         Method to GET Data from Server
         '''
-        if username is None:
-            user_data = serialize("json",NewUser.objects.all())
-            return user_data
-        elif NewUser.objects.get(username = username):
-            user_data = serialize("json",NewUser.objects.filter(username = username).all())
-            return user_data
-        else:
-            return {
-                "Message" : "Data Not Found"
+        if NewUser.objects.get(usename=username):
+            # refresh_token = NewUser.objects.get(username = username).Refresh_Token
+            # try:
+            #     private = NewUser.objects.get(username = username).private_key
+            #     jwt.decode(refresh_token,private,algorithms="RS256")
+            #     user_data = serialize("json",NewUser.objects.filter(username = username).all())
+            #     return user_data
+            # except jwt.ExpiredSignatureError:
+            #     pass
+            u_obj = services.objects.get(usename=username)
+            services_of_user = {
+                "Text_To_Speech" : u_obj.text_to_speech,
+                "Speech_To_Text" : u_obj.speech_to_text,
+                "Speech_To_Speech" : u_obj.speech_to_speech
             }
+            return {
+                "User" : serialize("json",NewUser.objects.filter(username=username).all()) ,
+                "Services": services_of_user
+            }
+        else:
+            obj = {
+                "Message" : "No User Exists"
+            }
+            raise ValueError(obj)
     
     
     def post(self,request):
@@ -51,7 +67,7 @@ class userViews(LoginRequiredMixin , View):
                 login(request,user_obj)
                 return obj
             else:
-                return raw_user_data.messagestack
+                raise raw_user_data.messagestack
     
     
     def patch(self,request):
@@ -59,37 +75,57 @@ class userViews(LoginRequiredMixin , View):
         '''
         Method to UPDATE existing Data (Partial / Full)
         '''
-        updateuser_data = updateUserForm(user = request.user , data = request.POST or None)
-        if updateuser_data.is_valid():
-            fetched_data = updateuser_data.cleaned_data
-            raw_user_data = UserModelSerializer(**fetched_data)
-            if raw_user_data.is_valid():
-                obj = raw_user_data.update_user_api()
-                return obj
-            else:
-                return raw_user_data.messagestack
+        if request.user is not None:
+            updateuser_data = updateUserForm(user = request.user , data = request.POST or None)
+            if updateuser_data.is_valid():
+                fetched_data = updateuser_data.cleaned_data
+                raw_user_data = UserModelSerializer(**fetched_data)
+                if raw_user_data.is_valid():
+                    obj = raw_user_data.update_user_api()
+                    return obj
+                else:
+                    raise raw_user_data.messagestack
+        else:
+            obj = {
+                "Message" : "No User Exists"
+            }
+            raise ValueError(obj)
+        
     
     
     def delete(self,request):
         '''
         Method to DELETE an user's data
         '''
-        uname = request.user.username
-        NewUser.objects.filter(username = uname).all().delete()
-        logout(request)
-        return {
-            "Message" : f"User object of username {uname} is deleted"
-        }
+        if request.user is not None:
+            uname = request.user.username
+            if NewUser.objects.get(username = uname).Blacklisted:
+                NewUser.objects.filter(username = uname).all().delete()
+                logout(request)
+                return {
+                    "Message" : f"User Object of Username {uname} is deleted"
+                }
+        else:
+            obj = {
+                "Message" : "No User Exists"
+            }
+            raise ValueError(obj)
     
 
 class PasswordView(LoginRequiredMixin , View):
     
     def patch(self , request):
-        form = PasswordChangeForm(user=request.user, data=request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
+        if request.user is not None:
+            form = PasswordChangeForm(user=request.user, data=request.POST)
+            if form.is_valid():
+                form.save()
+                update_session_auth_hash(request, form.user)
+            else:
+                return {
+                    "Message" : "Password is not Valid"
+                }
         else:
-            return {
-                "Message" : "Password is not Valid"
+            obj = {
+                "Message" : "No User Exists"
             }
+            return ValueError(obj)
