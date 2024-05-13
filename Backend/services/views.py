@@ -3,19 +3,17 @@ from .serializers import *
 from .models import *
 from .forms import *
 from django.core.serializers import serialize
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class serviceViews(View):
+class serviceViews(LoginRequiredMixin,View):
 
     def get(self,request,username):
         '''
         Method to GET Data from Server
         '''
-        if username is None:
-            user_data = serialize("json",services.objects.all())
-            return user_data
-        elif services.objects.get(username = username):
+        if services.objects.get(username = username):
             user_data = serialize("json",services.objects.filter(username = username).all())
             return user_data
         else:
