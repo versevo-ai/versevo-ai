@@ -66,31 +66,9 @@ class UserModelSerializer:
     def is_valid(self) -> bool:
         return self.flag
     
-    def Get_Jwt_Tokens(self) -> dict:
-        
-        # Some Code that will generate Bearer and Refresh Token Here
-        private_key = "".join([str(uuid.uuid5) for _ in range(50)]) + "".join([random.randint(a=1,b=10) for _ in range(10)]) + "".join([str(uuid.uuid5) for _ in range(50)])
-        public_key = "".join([str(uuid.uuid3) for _ in range(1000)]) + "".join([random.randint(a=1,b=100) for _ in range(10)])
-        
-        payload = {
-            "username":self.username,
-            "email":self.email,
-            "password":self.password
-        }
-        
-        # payload["exp"] = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(days=15)
-        access_token = jwt.encode(payload=payload,key=public_key,algorithm="RS256")
-        
-        payload["exp"] = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(days=40)
-        refresh_token = jwt.encode(payload=payload,key=public_key,algorithm="RS256")
-        
-        Tokens_n_keys={
-            "Access_Token":access_token,
-            "Refresh_Token":refresh_token,
-            "private_key":private_key,
-            "public_key":public_key
-        }
-        return Tokens_n_keys
+    def Get_Jwt_Tokens(self):
+        # Will Take Data From Security Module
+        pass
     
     def create_user_api(self):
         if self.email == os.getenv("SUPERUSER_EMAIL"):

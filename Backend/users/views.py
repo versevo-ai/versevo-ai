@@ -19,30 +19,14 @@ class userViews(View):
         '''
         Method to GET Data from Server
         '''
-        if NewUser.objects.get(usename=username):
-            # refresh_token = NewUser.objects.get(username = username).Refresh_Token
-            # try:
-            #     private = NewUser.objects.get(username = username).private_key
-            #     jwt.decode(refresh_token,private,algorithms="RS256")
-            #     user_data = serialize("json",NewUser.objects.filter(username = username).all())
-            #     return user_data
-            # except jwt.ExpiredSignatureError:
-            #     pass
-            u_obj = services.objects.get(usename=username)
-            services_of_user = {
-                "Text_To_Speech" : u_obj.text_to_speech,
-                "Speech_To_Text" : u_obj.speech_to_text,
-                "Speech_To_Speech" : u_obj.speech_to_speech
-            }
-            return {
-                "User" : serialize("json",NewUser.objects.filter(username=username).all()) ,
-                "Services": services_of_user
-            }
+        
+        # Tokens will be fetched from Security Module and then verification will be done in GET Request
+        
+        if NewUser.objects.get(username = username):
+            user_data = serialize("json",NewUser.objects.filter(username=username).all())
+            return user_data
         else:
-            obj = {
-                "Message" : "No User Exists"
-            }
-            raise ValueError(obj)
+            raise ValueError({"Message" : "No User Exists"})
     
     
     def post(self,request):
