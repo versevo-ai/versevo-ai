@@ -2,63 +2,124 @@
   "version": "6.0",
   "nxVersion": "19.5.4",
   "deps": {
+    "@angular-devkit/core": "^18.1.3",
+    "@angular/cli": "^18.1.3",
     "empty": "0.10.1",
+    "@nx-python/nx-python": "^1.0.3",
     "@nx/workspace": "19.5.4",
+    "@nxlv/python": "^18.1.0",
     "nx": "19.5.4"
   },
   "pathMappings": {},
   "nxJsonPlugins": [],
   "fileMap": {
-    "nonProjectFiles": [
-      {
-        "file": "README.md",
-        "hash": "2361808202546352266"
-      },
-      {
-        "file": ".nx/nxw.js",
-        "hash": "11254603345854076312"
-      },
-      {
-        "file": "package.json",
-        "hash": "4218721765459426531"
-      },
-      {
-        "file": "nx.json",
-        "hash": "14977852485590650733"
-      },
-      {
-        "file": "nx.bat",
-        "hash": "16119536321561623970"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "3833545590435012078"
-      },
-      {
-        "file": "nx",
-        "hash": "17165975525224888679"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "8230858575894466043"
-      },
-      {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
-      },
-      {
-        "file": "pnpm-lock.yaml",
-        "hash": "5234746668122608361"
-      },
-      {
-        "file": "LICENSE",
-        "hash": "1539253793410688689"
-      },
-      {
-        "file": ".npmrc",
-        "hash": "1880664178033616490"
-      }
-    ],
-    "projectFileMap": {}
+    "nonProjectFiles": [],
+    "projectFileMap": {
+      "@versevo-ai/source": [
+        {
+          "file": ".editorconfig",
+          "hash": "5443105041930014821"
+        },
+        {
+          "file": ".gitignore",
+          "hash": "12319293745947522434"
+        },
+        {
+          "file": ".npmrc",
+          "hash": "1880664178033616490"
+        },
+        {
+          "file": ".nx/nxw.js",
+          "hash": "11254603345854076312"
+        },
+        {
+          "file": ".vscode/extensions.json",
+          "hash": "3833545590435012078"
+        },
+        {
+          "file": "LICENSE",
+          "hash": "1539253793410688689"
+        },
+        {
+          "file": "README.md",
+          "hash": "2361808202546352266"
+        },
+        {
+          "file": "nx",
+          "hash": "17165975525224888679"
+        },
+        {
+          "file": "nx.bat",
+          "hash": "16119536321561623970"
+        },
+        {
+          "file": "nx.json",
+          "hash": "6161693002431259588"
+        },
+        {
+          "file": "package.json",
+          "hash": "6145162043487999228",
+          "deps": [
+            "npm:@nx-python/nx-python",
+            "npm:@nx/workspace",
+            "npm:@nxlv/python",
+            "npm:nx",
+            "npm:@angular-devkit/core",
+            "npm:@angular/cli",
+            "npm:empty"
+          ]
+        },
+        {
+          "file": "pnpm-lock.yaml",
+          "hash": "4502904978793539593"
+        }
+      ],
+      "subscription": [
+        {
+          "file": "subscription/.flake8",
+          "hash": "13740514885348841678"
+        },
+        {
+          "file": "subscription/.python-version",
+          "hash": "4446530629801136187"
+        },
+        {
+          "file": "subscription/README.md",
+          "hash": "9858590809366752902"
+        },
+        {
+          "file": "subscription/poetry.toml",
+          "hash": "431974645467554766"
+        },
+        {
+          "file": "subscription/project.json",
+          "hash": "5729069945955448105"
+        },
+        {
+          "file": "subscription/pyproject.toml",
+          "hash": "1333208509084464460"
+        },
+        {
+          "file": "subscription/subscription/__init__.py",
+          "hash": "17960801969217970829"
+        },
+        {
+          "file": "subscription/subscription/hello.py",
+          "hash": "201300715858847743"
+        },
+        {
+          "file": "subscription/tests/__init__.py",
+          "hash": "462151863455090031"
+        },
+        {
+          "file": "subscription/tests/conftest.py",
+          "hash": "17640809267765960585"
+        },
+        {
+          "file": "subscription/tests/test_hello.py",
+          "hash": "10666490056217821499"
+        }
+      ]
+    }
   }
 }
