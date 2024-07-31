@@ -3521,22 +3521,7 @@
       },
       {
         "source": "@versevo-ai/source",
-        "target": "npm:@nxlv/python",
-        "type": "static"
-      },
-      {
-        "source": "@versevo-ai/source",
         "target": "npm:nx",
-        "type": "static"
-      },
-      {
-        "source": "@versevo-ai/source",
-        "target": "npm:@angular-devkit/core",
-        "type": "static"
-      },
-      {
-        "source": "@versevo-ai/source",
-        "target": "npm:@angular/cli",
         "type": "static"
       },
       {
