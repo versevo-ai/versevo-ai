@@ -14,6 +14,62 @@
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {
+      "@versevo-ai/source": [
+        {
+          "file": ".editorconfig",
+          "hash": "7057873921047162436"
+        },
+        {
+          "file": ".gitignore",
+          "hash": "9188853280226649879"
+        },
+        {
+          "file": ".npmrc",
+          "hash": "1880664178033616490"
+        },
+        {
+          "file": ".nx/nxw.js",
+          "hash": "11254603345854076312"
+        },
+        {
+          "file": ".vscode/extensions.json",
+          "hash": "3833545590435012078"
+        },
+        {
+          "file": ".vscode/settings.json",
+          "hash": "10122281630288263498"
+        },
+        {
+          "file": "LICENSE",
+          "hash": "1539253793410688689"
+        },
+        {
+          "file": "README.md",
+          "hash": "2361808202546352266"
+        },
+        {
+          "file": "nx.json",
+          "hash": "14191518295384192793"
+        },
+        {
+          "file": "package.json",
+          "hash": "6145162043487999228",
+          "deps": [
+            "npm:@nx-python/nx-python",
+            "npm:@nx/workspace",
+            "npm:nx",
+            "npm:empty"
+          ]
+        },
+        {
+          "file": "pnpm-lock.yaml",
+          "hash": "4502904978793539593"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "15546308478356112133"
+        }
+      ],
       "subscription": [
         {
           "file": "api/.python-version",
@@ -102,62 +158,6 @@
         {
           "file": "api/tests/test_hello.py",
           "hash": "1446487404999393946"
-        }
-      ],
-      "@versevo-ai/source": [
-        {
-          "file": ".editorconfig",
-          "hash": "7057873921047162436"
-        },
-        {
-          "file": ".gitignore",
-          "hash": "9188853280226649879"
-        },
-        {
-          "file": ".npmrc",
-          "hash": "1880664178033616490"
-        },
-        {
-          "file": ".nx/nxw.js",
-          "hash": "11254603345854076312"
-        },
-        {
-          "file": ".vscode/extensions.json",
-          "hash": "3833545590435012078"
-        },
-        {
-          "file": ".vscode/settings.json",
-          "hash": "10122281630288263498"
-        },
-        {
-          "file": "LICENSE",
-          "hash": "1539253793410688689"
-        },
-        {
-          "file": "README.md",
-          "hash": "2361808202546352266"
-        },
-        {
-          "file": "nx.json",
-          "hash": "14191518295384192793"
-        },
-        {
-          "file": "package.json",
-          "hash": "6145162043487999228",
-          "deps": [
-            "npm:@nx-python/nx-python",
-            "npm:@nx/workspace",
-            "npm:nx",
-            "npm:empty"
-          ]
-        },
-        {
-          "file": "pnpm-lock.yaml",
-          "hash": "4502904978793539593"
-        },
-        {
-          "file": "tsconfig.json",
-          "hash": "15546308478356112133"
         }
       ]
     },
