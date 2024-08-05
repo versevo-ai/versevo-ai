@@ -2,6 +2,7 @@
   "version": "6.0",
   "nxVersion": "19.5.4",
   "deps": {
+    ".nx": "link:.nx",
     "@angular-devkit/core": "^18.1.3",
     "@angular/cli": "^18.1.3",
     "empty": "0.10.1",
@@ -15,7 +16,53 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
+      "platform": [
+        {
+          "file": "backend/.python-version",
+          "hash": "13648901043608344200"
+        },
+        {
+          "file": "backend/README.md",
+          "hash": "6991921758726905334"
+        },
+        {
+          "file": "backend/platform/__init__.py",
+          "hash": "17960801969217970829"
+        },
+        {
+          "file": "backend/platform/hello.py",
+          "hash": "3944425293641325402"
+        },
+        {
+          "file": "backend/poetry.toml",
+          "hash": "431974645467554766"
+        },
+        {
+          "file": "backend/project.json",
+          "hash": "11830569897703253959"
+        },
+        {
+          "file": "backend/pyproject.toml",
+          "hash": "12434723257360535984"
+        },
+        {
+          "file": "backend/tests/__init__.py",
+          "hash": "462151863455090031"
+        },
+        {
+          "file": "backend/tests/conftest.py",
+          "hash": "17640809267765960585"
+        },
+        {
+          "file": "backend/tests/test_hello.py",
+          "hash": "13098380887266084964"
+        }
+      ],
       "subscription": [
+        {
+          "file": "api/.gitignore",
+          "hash": "12990309872111536764"
+        },
         {
           "file": "api/.python-version",
           "hash": "5858046167462772196"
@@ -26,7 +73,7 @@
         },
         {
           "file": "api/poetry.lock",
-          "hash": "2802467014886081745"
+          "hash": "18345175937686036905"
         },
         {
           "file": "api/poetry.toml",
@@ -100,7 +147,7 @@
         },
         {
           "file": "package.json",
-          "hash": "6145162043487999228",
+          "hash": "5855313163298986279",
           "deps": [
             "npm:@nx-python/nx-python",
             "npm:@nx/workspace",
@@ -113,7 +160,11 @@
         },
         {
           "file": "pnpm-lock.yaml",
-          "hash": "4502904978793539593"
+          "hash": "12931859408079148803"
+        },
+        {
+          "file": "requirements.txt",
+          "hash": "973152109435306572"
         }
       ]
     }
