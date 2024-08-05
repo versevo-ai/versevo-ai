@@ -25,7 +25,7 @@ export default defineConfig({
   },
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npx nx start my-next-app',
+    command: 'npx nx start web-landing',
     url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
     cwd: workspaceRoot,

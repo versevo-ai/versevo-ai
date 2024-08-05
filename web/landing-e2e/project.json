@@ -1,0 +1,9 @@
+{
+  "name": "web-landing-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "web/landing-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["web-landing"],
+  "// targets": "to see all targets run: nx show project web-landing-e2e --web",
+  "targets": {}
+}
