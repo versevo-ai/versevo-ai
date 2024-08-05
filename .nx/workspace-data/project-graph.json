@@ -1,5 +1,98 @@
 {
   "nodes": {
+    "platform": {
+      "name": "platform",
+      "type": "app",
+      "data": {
+        "root": "backend",
+        "name": "platform",
+        "$schema": "../node_modules/nx/schemas/project-schema.json",
+        "projectType": "application",
+        "sourceRoot": "backend/platform",
+        "tags": [],
+        "targets": {
+          "lock": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "poetry lock --no-update",
+              "cwd": "backend"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "add": {
+            "executor": "@nxlv/python:add",
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          },
+          "update": {
+            "executor": "@nxlv/python:update",
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          },
+          "remove": {
+            "executor": "@nxlv/python:remove",
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          },
+          "build": {
+            "executor": "@nxlv/python:build",
+            "outputs": [
+              "{projectRoot}/dist"
+            ],
+            "options": {
+              "outputPath": "backend/dist",
+              "publish": false,
+              "lockedVersions": true,
+              "bundleLocalDependencies": true
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "install": {
+            "executor": "@nxlv/python:install",
+            "options": {
+              "silent": false,
+              "args": "",
+              "cacheDir": ".cache/pypoetry",
+              "verbose": false,
+              "debug": false
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nxlv/python:ruff-check",
+            "outputs": [],
+            "options": {
+              "lintFilePatterns": [
+                "platform",
+                "tests"
+              ]
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "executor": "@nxlv/python:run-commands",
+            "outputs": [
+              "{workspaceRoot}/reports/backend/unittests",
+              "{workspaceRoot}/coverage/backend"
+            ],
+            "options": {
+              "command": "poetry run pytest tests/",
+              "cwd": "backend"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
     "subscription": {
       "name": "subscription",
       "type": "app",
@@ -3507,6 +3600,7 @@
     }
   },
   "dependencies": {
+    "platform": [],
     "subscription": [],
     "@versevo-ai/source": [
       {

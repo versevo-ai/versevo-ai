@@ -3480,3 +3480,115 @@ LoadPluginError: Could not load plugin @nxlv/pyton
 [NX Daemon Server] - 2024-08-05T09:09:04.796Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 1.
 [NX Daemon Server] - 2024-08-05T09:09:04.796Z - Time taken for 'total for creating and serializing project graph' 0.3204840000253171ms
 [NX Daemon Server] - 2024-08-05T09:09:04.800Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-08-05T15:39:54.767Z - Started listening on: /tmp/67e1b64bba0ddb9ba888/d.sock
+[NX Daemon Server] - 2024-08-05T15:39:55.062Z - [WATCHER]: Subscribed to changes within: /home/pkdeb/Desktop/WEB-PROJECTS/versevo-ai (native)
+[NX Daemon Server] - 2024-08-05T15:39:55.074Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-08-05T15:39:55.082Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-08-05T15:39:55.113Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-08-05T15:39:59.764Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-08-05T15:39:59.766Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-08-05T15:39:59.767Z - Handled GLOB. Handling time: 4636. Response time: 3.
+[NX Daemon Server] - 2024-08-05T15:40:01.253Z - [REQUEST]: Responding to the client. handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-08-05T15:40:01.312Z - Done responding to the client handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-08-05T15:40:01.312Z - Handled GET_NX_WORKSPACE_FILES. Handling time: 202. Response time: 59.
+[NX Daemon Server] - 2024-08-05T15:40:01.991Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-08-05T15:42:19.913Z - [WATCHER]: _tmp_18199_2323d73ab54c1821670d562ccd48e1b4 was deleted
+[NX Daemon Server] - 2024-08-05T15:42:19.927Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T15:42:22.140Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-08-05T15:42:22.140Z - [REQUEST]: 
+[NX Daemon Server] - 2024-08-05T15:42:22.140Z - [REQUEST]: _tmp_18199_2323d73ab54c1821670d562ccd48e1b4
+[NX Daemon Server] - 2024-08-05T15:42:22.208Z - Time taken for 'loadNxPlugins' 2012.5226560000156ms
+[NX Daemon Server] - 2024-08-05T15:42:23.167Z - Time taken for 'build-project-configs' 622.1173100000015ms
+[NX Daemon Server] - 2024-08-05T15:42:23.351Z - Time taken for 'total execution time for createProjectGraph()' 311.44292800000403ms
+[NX Daemon Server] - 2024-08-05T15:42:25.885Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T15:42:25.892Z - [WATCHER]: Stopping the watcher for /home/pkdeb/Desktop/WEB-PROJECTS/versevo-ai (sources)
+[NX Daemon Server] - 2024-08-05T15:42:25.898Z - [WATCHER]: Stopping the watcher for /home/pkdeb/Desktop/WEB-PROJECTS/versevo-ai (outputs)
+[NX Daemon Server] - 2024-08-05T15:42:25.898Z - Server stopped because: "LOCK_FILES_CHANGED"
+[NX Daemon Server] - 2024-08-05T15:58:45.264Z - Started listening on: /tmp/67e1b64bba0ddb9ba888/d.sock
+[NX Daemon Server] - 2024-08-05T15:58:45.358Z - [WATCHER]: Subscribed to changes within: /home/pkdeb/Desktop/WEB-PROJECTS/versevo-ai (native)
+[NX Daemon Server] - 2024-08-05T15:58:45.362Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-08-05T15:58:45.364Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-08-05T15:58:45.369Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-08-05T15:58:45.371Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-08-05T15:58:46.243Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-08-05T15:58:46.244Z - [REQUEST]: 
+[NX Daemon Server] - 2024-08-05T15:58:46.244Z - [REQUEST]: 
+[NX Daemon Server] - 2024-08-05T15:58:46.262Z - Time taken for 'loadNxPlugins' 867.721867ms
+[NX Daemon Server] - 2024-08-05T15:58:47.098Z - Time taken for 'build-project-configs' 653.6523629999999ms
+[NX Daemon Server] - 2024-08-05T15:58:47.157Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-08-05T15:58:47.158Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-08-05T15:58:47.159Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1786. Response time: 2.
+[NX Daemon Server] - 2024-08-05T15:58:47.159Z - Time taken for 'total for creating and serializing project graph' 1785.973974ms
+[NX Daemon Server] - 2024-08-05T15:58:47.575Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-08-05T15:58:48.649Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T15:58:48.651Z - [WATCHER]: 10 file(s) created or restored, 0 file(s) modified, 0 file(s) deleted
+[NX Daemon Server] - 2024-08-05T15:58:48.754Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-08-05T15:58:48.754Z - [REQUEST]: backend/tests/conftest.py,backend/poetry.toml,backend/tests/__init__.py,backend/tests/test_hello.py,backend/pyproject.toml,backend/README.md,backend/.python-version,backend/project.json,backend/platform/hello.py,backend/platform/__init__.py
+[NX Daemon Server] - 2024-08-05T15:58:48.754Z - [REQUEST]: 
+[NX Daemon Server] - 2024-08-05T15:58:48.766Z - Time taken for 'hash changed files from watcher' 0.7860989999999219ms
+[NX Daemon Server] - 2024-08-05T15:58:48.776Z - Time taken for 'build-project-configs' 16.001940000000104ms
+[NX Daemon Server] - 2024-08-05T15:58:48.803Z - Time taken for 'total execution time for createProjectGraph()' 22.88124400000015ms
+[NX Daemon Server] - 2024-08-05T16:01:54.630Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:54.672Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.194Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.259Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.382Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.439Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.493Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.573Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.661Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.746Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.806Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.878Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:55.935Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.006Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.096Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.150Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.215Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.332Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.356Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.456Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.564Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.631Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.685Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.781Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.836Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.904Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:56.970Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.175Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.233Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.297Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.358Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.451Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.514Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.596Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.649Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.710Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.775Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.875Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.924Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:57.981Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.040Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.120Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.200Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.262Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.316Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.407Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.459Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.530Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.592Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.650Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:01:58.698Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:02:42.785Z - [WATCHER]: api/pyproject.toml was created or restored
+[NX Daemon Server] - 2024-08-05T16:02:42.790Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:02:42.935Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-08-05T16:02:42.940Z - [REQUEST]: api/pyproject.toml
+[NX Daemon Server] - 2024-08-05T16:02:42.941Z - [REQUEST]: 
+[NX Daemon Server] - 2024-08-05T16:02:43.210Z - Time taken for 'hash changed files from watcher' 22.07273799998802ms
+[NX Daemon Server] - 2024-08-05T16:02:43.426Z - Time taken for 'build-project-configs' 351.07476499999757ms
+[NX Daemon Server] - 2024-08-05T16:02:43.589Z - Time taken for 'total execution time for createProjectGraph()' 154.98279499998898ms
+[NX Daemon Server] - 2024-08-05T16:03:00.410Z - [WATCHER]: api/.gitignore was deleted
+[NX Daemon Server] - 2024-08-05T16:03:00.412Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-08-05T16:03:00.413Z - [WATCHER]: Stopping the watcher for /home/pkdeb/Desktop/WEB-PROJECTS/versevo-ai (sources)
+[NX Daemon Server] - 2024-08-05T16:03:00.413Z - [WATCHER]: Stopping the watcher for /home/pkdeb/Desktop/WEB-PROJECTS/versevo-ai (outputs)
+[NX Daemon Server] - 2024-08-05T16:03:00.413Z - Server stopped because: "Stopping the daemon the set of ignored files changed (native)"
