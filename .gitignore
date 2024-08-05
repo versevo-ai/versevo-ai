@@ -38,9 +38,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.nx/installation
-.nx/cache
-.nx/workspace-data
+/.nx/installation
+/.nx/cache
+/.nx/workspace-data
 
 # Python
 /venv

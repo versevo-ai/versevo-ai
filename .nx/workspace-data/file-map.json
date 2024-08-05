@@ -15,6 +15,52 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
+      "subscription": [
+        {
+          "file": "api/.python-version",
+          "hash": "5858046167462772196"
+        },
+        {
+          "file": "api/README.md",
+          "hash": "9858590809366752902"
+        },
+        {
+          "file": "api/poetry.lock",
+          "hash": "2802467014886081745"
+        },
+        {
+          "file": "api/poetry.toml",
+          "hash": "431974645467554766"
+        },
+        {
+          "file": "api/project.json",
+          "hash": "16464925492075534524"
+        },
+        {
+          "file": "api/pyproject.toml",
+          "hash": "13353755031086666227"
+        },
+        {
+          "file": "api/subscription/__init__.py",
+          "hash": "17960801969217970829"
+        },
+        {
+          "file": "api/subscription/hello.py",
+          "hash": "201300715858847743"
+        },
+        {
+          "file": "api/tests/__init__.py",
+          "hash": "462151863455090031"
+        },
+        {
+          "file": "api/tests/conftest.py",
+          "hash": "17640809267765960585"
+        },
+        {
+          "file": "api/tests/test_hello.py",
+          "hash": "10666490056217821499"
+        }
+      ],
       "@versevo-ai/source": [
         {
           "file": ".editorconfig",
@@ -22,7 +68,7 @@
         },
         {
           "file": ".gitignore",
-          "hash": "12319293745947522434"
+          "hash": "6124148776459794740"
         },
         {
           "file": ".npmrc",
@@ -37,6 +83,10 @@
           "hash": "3833545590435012078"
         },
         {
+          "file": ".vscode/settings.json",
+          "hash": "10122281630288263498"
+        },
+        {
           "file": "LICENSE",
           "hash": "1539253793410688689"
         },
@@ -45,16 +95,8 @@
           "hash": "2361808202546352266"
         },
         {
-          "file": "nx",
-          "hash": "17165975525224888679"
-        },
-        {
-          "file": "nx.bat",
-          "hash": "16119536321561623970"
-        },
-        {
           "file": "nx.json",
-          "hash": "6161693002431259588"
+          "hash": "16861854006644503575"
         },
         {
           "file": "package.json",
@@ -72,52 +114,6 @@
         {
           "file": "pnpm-lock.yaml",
           "hash": "4502904978793539593"
-        }
-      ],
-      "subscription": [
-        {
-          "file": "subscription/.flake8",
-          "hash": "13740514885348841678"
-        },
-        {
-          "file": "subscription/.python-version",
-          "hash": "4446530629801136187"
-        },
-        {
-          "file": "subscription/README.md",
-          "hash": "9858590809366752902"
-        },
-        {
-          "file": "subscription/poetry.toml",
-          "hash": "431974645467554766"
-        },
-        {
-          "file": "subscription/project.json",
-          "hash": "5729069945955448105"
-        },
-        {
-          "file": "subscription/pyproject.toml",
-          "hash": "1333208509084464460"
-        },
-        {
-          "file": "subscription/subscription/__init__.py",
-          "hash": "17960801969217970829"
-        },
-        {
-          "file": "subscription/subscription/hello.py",
-          "hash": "201300715858847743"
-        },
-        {
-          "file": "subscription/tests/__init__.py",
-          "hash": "462151863455090031"
-        },
-        {
-          "file": "subscription/tests/conftest.py",
-          "hash": "17640809267765960585"
-        },
-        {
-          "file": "subscription/tests/test_hello.py",
-          "hash": "10666490056217821499"
         }
       ]
     }
