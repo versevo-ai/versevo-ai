@@ -108,13 +108,19 @@ WSGI_APPLICATION = "engine.wsgi.application"
 
 import dj_database_url
 
-URI = os.getenv("DB_URI")
+MAIN_DB = os.getenv("MAIN_DB")
+TEST_DB = os.getenv("TEST_DB")
 
 # DATABASES = {
 # 	"default": dj_database_url.parse(URI)
 # }
 
-DATABASES = {"default": dj_database_url.config(default=URI, conn_max_age=600)}
+DATABASES = {
+    "default": dj_database_url.config(default=MAIN_DB, conn_max_age=600),
+    "test" : dj_database_url.config(default=TEST_DB, conn_max_age=600)
+}
+
+DATABASE_ROUTERS = ['engine.routers.ToggleRouter']
 
 # Cache Config of Redis
 
