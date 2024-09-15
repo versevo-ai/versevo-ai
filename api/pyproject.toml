@@ -25,6 +25,7 @@ readme = 'README.md'
   fastapi = {extras = ["standard"], version = "^0.112.0"}
   uvicorn = {extras = ["standard"], version = "^0.30.5"}
   supabase = "^2.6.0"
+  httpx = {extras = ["http2"], version = "^0.27.2"}
 
   [tool.poetry.group.dev.dependencies]
   autopep8 = "2.0.2"

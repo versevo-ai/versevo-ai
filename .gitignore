@@ -51,3 +51,4 @@ Thumbs.db
 /.versevo-venv
 /versevo-venv
 api/subscription/__pycache__/
+api/subscription/router/__pycache__/

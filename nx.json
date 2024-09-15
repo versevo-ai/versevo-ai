@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "installation": {
+    "packageManager": "poetry"
+  },
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",

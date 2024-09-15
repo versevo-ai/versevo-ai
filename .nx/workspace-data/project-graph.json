@@ -20,6 +20,15 @@
             "configurations": {},
             "parallelism": true
           },
+          "start": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "uvicorn subscription.main:app --reload",
+              "cwd": "api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
           "add": {
             "executor": "@nxlv/python:add",
             "options": {},

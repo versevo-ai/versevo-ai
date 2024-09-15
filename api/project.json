@@ -11,6 +11,13 @@
         "cwd": "api"
       }
     },
+    "start": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uvicorn subscription.main:app --reload",
+        "cwd": "api"
+      }
+    },
     "add": {
       "executor": "@nxlv/python:add",
       "options": {}
