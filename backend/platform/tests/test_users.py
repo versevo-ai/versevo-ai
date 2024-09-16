@@ -7,7 +7,7 @@ from services.forms import *
 from users.models import *
 from users.serializers import *
 
-@pytest.mark.django_db(databases=['test'])
+@pytest.mark.django_db
 class TestUsers:
     @pytest.fixture(scope="function")
     def client(self):
