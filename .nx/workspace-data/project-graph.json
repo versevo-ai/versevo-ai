@@ -23,6 +23,15 @@
           "start": {
             "executor": "@nxlv/python:run-commands",
             "options": {
+              "command": "uvicorn subscription.main:app --host 0.0.0.0 --port $SUBS_PORT --reload",
+              "cwd": "api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "dev": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
               "command": "uvicorn subscription.main:app --reload",
               "cwd": "api"
             },
