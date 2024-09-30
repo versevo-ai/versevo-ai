@@ -13,7 +13,6 @@
   "pathMappings": {},
   "nxJsonPlugins": [],
   "fileMap": {
-    "nonProjectFiles": [],
     "projectFileMap": {
       "subscription": [
         {
@@ -26,7 +25,7 @@
         },
         {
           "file": "api/poetry.lock",
-          "hash": "2802467014886081745"
+          "hash": "11699511161529164073"
         },
         {
           "file": "api/poetry.toml",
@@ -34,19 +33,63 @@
         },
         {
           "file": "api/project.json",
-          "hash": "16464925492075534524"
+          "hash": "13199896470150662995"
         },
         {
           "file": "api/pyproject.toml",
-          "hash": "13353755031086666227"
+          "hash": "7829795192283578961"
         },
         {
-          "file": "api/subscription/__init__.py",
-          "hash": "17960801969217970829"
+          "file": "api/subscription/.dockerignore",
+          "hash": "15434969239146023980"
         },
         {
-          "file": "api/subscription/hello.py",
-          "hash": "201300715858847743"
+          "file": "api/subscription/Dockerfile",
+          "hash": "4057891404389294228"
+        },
+        {
+          "file": "api/subscription/README.Docker.md",
+          "hash": "5205773721215957351"
+        },
+        {
+          "file": "api/subscription/compose.yaml",
+          "hash": "6700127292673452382"
+        },
+        {
+          "file": "api/subscription/database.py",
+          "hash": "9703599622873422862"
+        },
+        {
+          "file": "api/subscription/main.py",
+          "hash": "351194748801385949"
+        },
+        {
+          "file": "api/subscription/router/__init__.py",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "api/subscription/router/health.py",
+          "hash": "1226193660420846581"
+        },
+        {
+          "file": "api/subscription/router/waitlist.py",
+          "hash": "15527832122987840783"
+        },
+        {
+          "file": "api/subscription/schema/.gitignore",
+          "hash": "11583487318134617122"
+        },
+        {
+          "file": "api/subscription/schema/__init__.py",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "api/subscription/schema/waitlist_schema.py",
+          "hash": "694262997809759260"
+        },
+        {
+          "file": "api/subscription/templates/index.html",
+          "hash": "1640263989941120039"
         },
         {
           "file": "api/tests/__init__.py",
@@ -58,17 +101,17 @@
         },
         {
           "file": "api/tests/test_hello.py",
-          "hash": "10666490056217821499"
+          "hash": "1446487404999393946"
         }
       ],
       "@versevo-ai/source": [
         {
           "file": ".editorconfig",
-          "hash": "5443105041930014821"
+          "hash": "7057873921047162436"
         },
         {
           "file": ".gitignore",
-          "hash": "6124148776459794740"
+          "hash": "9188853280226649879"
         },
         {
           "file": ".npmrc",
@@ -96,7 +139,7 @@
         },
         {
           "file": "nx.json",
-          "hash": "16861854006644503575"
+          "hash": "14191518295384192793"
         },
         {
           "file": "package.json",
@@ -104,18 +147,20 @@
           "deps": [
             "npm:@nx-python/nx-python",
             "npm:@nx/workspace",
-            "npm:@nxlv/python",
             "npm:nx",
-            "npm:@angular-devkit/core",
-            "npm:@angular/cli",
             "npm:empty"
           ]
         },
         {
           "file": "pnpm-lock.yaml",
           "hash": "4502904978793539593"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "15546308478356112133"
         }
       ]
-    }
+    },
+    "nonProjectFiles": []
   }
 }

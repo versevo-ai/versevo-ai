@@ -11,6 +11,27 @@
         "cwd": "api"
       }
     },
+    "start": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uvicorn subscription.main:app --workers 4 --host 0.0.0.0 --port $SUBS_PORT",
+        "cwd": "api"
+      }
+    },
+    "dev": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uvicorn subscription.main:app --reload",
+        "cwd": "api"
+      }
+    },
+    "dev:concurrent": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uvicorn subscription.main:app --workers 4",
+        "cwd": "api"
+      }
+    },
     "add": {
       "executor": "@nxlv/python:add",
       "options": {}

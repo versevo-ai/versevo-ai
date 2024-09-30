@@ -20,6 +20,24 @@
             "configurations": {},
             "parallelism": true
           },
+          "start": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "uvicorn subscription.main:app --host 0.0.0.0 --port $SUBS_PORT --reload",
+              "cwd": "api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "dev": {
+            "executor": "@nxlv/python:run-commands",
+            "options": {
+              "command": "uvicorn subscription.main:app --reload",
+              "cwd": "api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
           "add": {
             "executor": "@nxlv/python:add",
             "options": {},
@@ -3521,22 +3539,7 @@
       },
       {
         "source": "@versevo-ai/source",
-        "target": "npm:@nxlv/python",
-        "type": "static"
-      },
-      {
-        "source": "@versevo-ai/source",
         "target": "npm:nx",
-        "type": "static"
-      },
-      {
-        "source": "@versevo-ai/source",
-        "target": "npm:@angular-devkit/core",
-        "type": "static"
-      },
-      {
-        "source": "@versevo-ai/source",
-        "target": "npm:@angular/cli",
         "type": "static"
       },
       {

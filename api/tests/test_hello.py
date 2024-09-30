@@ -1,8 +1,9 @@
 """Hello unit test module."""
 
-from subscription.hello import hello
+from logging import root
+from subscription.main import root
 
 
 def test_hello():
     """Test the hello function."""
-    assert hello() == "Hello subscription"
+    assert root() == "Hello subscription"
