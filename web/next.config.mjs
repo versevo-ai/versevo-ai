@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+/* eslint-disable import/no-anonymous-default-export */
+export default {
+  distDir: 'build',
+}
