@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 
 load_dotenv()
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "corsheaders",  # For Django-CORS-Headers
     "services",
     "users",
+    "stream",
 ]
 
 
