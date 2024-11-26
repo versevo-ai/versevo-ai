@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "corsheaders",  # For Django-CORS-Headers
     "services",
     "users",
+    "channels",
+    "daphne",
     "stream",
 ]
 
@@ -101,6 +103,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "engine.wsgi.application"
+
+ASGI_APPLICATION = "engine.asgi.application"
 
 
 # Database
