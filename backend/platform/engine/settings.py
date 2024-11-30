@@ -46,11 +46,9 @@ INSTALLED_APPS = [
     "corsheaders",  # For Django-CORS-Headers
     "services",
     "users",
-    "channels",
-    "daphne",
+    "django_eventstream",
     "stream",
 ]
-
 
 
 MIDDLEWARE = [
@@ -103,9 +101,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "engine.wsgi.application"
-
-ASGI_APPLICATION = "engine.asgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
