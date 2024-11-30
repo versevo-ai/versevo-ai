@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     "services",
     "users",
     "django_eventstream",
-    "stream",
 ]
 
 
