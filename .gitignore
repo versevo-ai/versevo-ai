@@ -48,4 +48,5 @@ Thumbs.db
 /.versevo-venv
 /versevo-venv
 backend/platform/.env
+backend/talk/.env
 backend/.ruff_cache
