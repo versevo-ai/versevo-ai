@@ -4,35 +4,54 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
+  "github.com/pion/webrtc/v3"
 	"github.com/gorilla/websocket"
 )
 
 const Port = ":8080"
 
 var upgrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
+    ReadBufferSize:  1024,
+    WriteBufferSize: 1024,
 }
 
 func main() {
 
-	http.HandleFunc("/ws", handleWebsocket)
-	fs := http.FileServer(http.Dir("./web"))
-	http.Handle("/", fs)
+    http.HandleFunc("/ws", handleWebsocket)
+    fs := http.FileServer(http.Dir("./web"))
+    http.Handle("/", fs)
 
-	fmt.Printf("Starting Server at - http://localhost%s/n", Port)
-	log.Fatal(http.ListenAndServe(Port, nil))
+    fmt.Printf("Starting Server at - http://localhost%s/n", Port)
+    log.Fatal(http.ListenAndServe(Port, nil))
 
 }
 
 func handleWebsocket(w http.ResponseWriter, r *http.Request) {
 
-	conn, err := upgrader.Upgrade(w, r, nill)
-	if err != nil {
-		log.Println(err)
-	}
+    conn, err := upgrader.Upgrade(w, r, nill)
+    if err != nil {
+      log.Println(err)
+    }
 
-	defer conn.Close()
+    defer conn.Close()
 
+}
+
+for {
+    _, message, err := conn.ReadMessage()
+    if err != nil {
+      log.Println(err)
+      break
+    }
+    log.Printf("Received: %s", message)
+}
+
+func createPeerConnection()(*webrtc.PeerConnection, error){
+    iceservers := []webrtc.ICEServer{
+      {
+          URLS : []string{"stun:stun.l.google.com.19302"},
+      },
+    }
+
+    config := webrtc
 }
