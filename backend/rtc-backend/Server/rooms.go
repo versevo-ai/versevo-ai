@@ -1,7 +1,9 @@
 package Server
 
 import (
+	"fmt"
 	"github.com/gorilla/websocket"
+	"github.com/pion/webrtc/v3"
 	"log"
 	"math/rand"
 	"sync"
@@ -9,8 +11,9 @@ import (
 )
 
 type Participant struct {
-	Host bool
-	Conn *websocket.Conn
+	Host           bool
+	Conn           *websocket.Conn
+	PeerConnection *webrtc.PeerConnection // Add PeerConnection
 }
 
 type RoomMap struct {
@@ -43,12 +46,47 @@ func (r *RoomMap) CreateRoom() string {
 	return roomID
 }
 
-func (r *RoomMap) InsertIntoRoom(roomID string, host bool, conn *websocket.Conn) {
+func (r *RoomMap) InsertIntoRoom(roomID string, host bool, conn *websocket.Conn) (*webrtc.PeerConnection, error) { // Return PeerConnection
 	r.Mutex.Lock()
 	defer r.Mutex.Unlock()
-	p := Participant{host, conn}
+
+	// Create Peer Connection
+	peerConnection, err := createPeerConnection()
+	if err != nil {
+		return nil, err // Handle error
+	}
+
+	p := Participant{host, conn, peerConnection} // Store PeerConnection
 	log.Println("Inserting into Room with RoomID: ", roomID)
 	r.Map[roomID] = append(r.Map[roomID], p)
+	return peerConnection, nil // Return the peer connection
+}
+
+func createPeerConnection() (*webrtc.PeerConnection, error) {
+
+	// Define ICE servers
+	iceServers := []webrtc.ICEServer{
+		{
+			URLs: []string{"stun:stun.l.google.com:19302"},
+		},
+	}
+
+	// Create a new RTCPeerConnection
+	config := webrtc.Configuration{
+		ICEServers: iceServers,
+	}
+
+	peerConnection, err := webrtc.NewPeerConnection(config)
+	if err != nil {
+		return nil, err
+	}
+
+	// Handle ICE connection state changes
+	peerConnection.OnICEConnectionStateChange(func(state webrtc.ICEConnectionState) {
+		fmt.Printf("ICE Connection State has changed: %s\n", state.String())
+	})
+
+	return peerConnection, nil
 }
 
 func (r *RoomMap) DeleteRoom(roomID string) {
