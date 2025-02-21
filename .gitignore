@@ -50,5 +50,11 @@ Thumbs.db
 /.venv
 /.versevo-venv
 /versevo-venv
+<<<<<<< HEAD
 api/subscription/__pycache__/
 api/subscription/router/__pycache__/
+=======
+backend/platform/.env
+backend/talk/.env
+backend/.ruff_cache
+>>>>>>> refs/remotes/origin/feat/versevo-platform-backend
