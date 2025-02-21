@@ -51,9 +51,12 @@ Thumbs.db
 /.versevo-venv
 /versevo-venv
 
-api/subscription/__pycache__/
-api/subscription/router/__pycache__/
-__pycache__
+# Python cache files
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
 backend/platform/.env
 backend/talk/.env
 backend/.ruff_cache
