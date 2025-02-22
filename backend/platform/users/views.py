@@ -47,12 +47,12 @@ class userViews(LoginRequiredMixin, View):
                     last_name=fetched_data.get("last_name"),
                 )
                 if raw_user_data==True:
-                    if raw_user_data.method in ['POST','post']:
+                    if NewUser.objects.filter(username = raw_user_data.username).exists()==False:
                         obj = raw_user_data.create_user_api()
                         user_obj = NewUser.objects.filter(username=fetched_data.get("username")).all()
                         login(request, user_obj)
                         return obj
-                    elif raw_user_data.method in ['PUT','put','PATCH','patch']:
+                    else:
                         if (raw_user_data.password != NewUser.objects.get(username=request.user.username).password):
                             form = PasswordChangeForm(user=request.user, data=raw_user_data.password)
                             try:
@@ -67,7 +67,7 @@ class userViews(LoginRequiredMixin, View):
                             obj = raw_user_data.update_user_api(username=raw_user_data.username) 
                             return obj
                 else:
-                    return raw_user_data.throw_errorlist()
+                    return JsonResponse({"errors":f"{raw_user_data.throw_errorlist()}"})
         except Exception:
             return JsonResponse({"Status":"ERROR","Message":"Invalid Data in Form"})
 
