@@ -5,6 +5,9 @@ from engine.settings import AUTH_USER_MODEL
 
 
 class services(models.Model):
+   
+    # This static choices will be changed from the fetched data of another db model of ML MODEL
+    
     TTS_MODEL_NAMES= {
         'TTS_Model1':'tts_model1',
         'TTS_Model2':'tts_model2',
@@ -15,6 +18,7 @@ class services(models.Model):
         'tts_model1':100,
         'tts_model2':200,
         'tts_model3':300,
+        'None': 0,
     }
     
     
@@ -29,6 +33,7 @@ class services(models.Model):
         'stt_model1':100,
         'stt_model2':200,
         'stt_model3':300,
+        'None': 0,
     }
     
     
@@ -42,27 +47,28 @@ class services(models.Model):
         'sts_model1':100,
         'sts_model2':200,
         'sts_model3':300,
+        'None': 0,
     }
     
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="NewUser")
-    money = models.IntegerField(null=True, blank=True, default=0)
-    tts_model = models.TextField(choices=TTS_MODEL_NAMES)
+    money = 0
+    tts_model = models.TextField(choices=TTS_MODEL_NAMES,default='None')
     
-    stt_model = models.TextField(choices=STT_MODEL_NAMES)
+    stt_model = models.TextField(choices=STT_MODEL_NAMES,default='None')
     
-    sts_model = models.TextField(choices=STS_MODEL_NAMES)
+    sts_model = models.TextField(choices=STS_MODEL_NAMES,default='None')
     
     def save(self, *args, **kwargs):
-        
+        temp = 0
         price = self.TTS_MODEL_PRICES.get(self.TTS_MODEL_NAMES.get(self.tts_model))
-        print(price)
-        self.money += price
+        temp += price
         
         price = self.STT_MODEL_PRICES.get(self.STT_MODEL_NAMES.get(self.stt_model))
-        self.money += price
+        temp += price
         
         price = self.STS_MODEL_PRICES.get(self.STS_MODEL_NAMES.get(self.sts_model))
-        self.money += price
+        temp += price
+        self.money = temp
         super().save(*args, **kwargs)
 
     def __str__(self):
