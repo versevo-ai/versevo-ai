@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from django.views import View
-from .serializers import *
 from .models import *
 from .forms import *
 from django.core.serializers import serialize
