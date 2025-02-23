@@ -52,7 +52,7 @@ class services(models.Model):
     
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="NewUser")
     
-    money = 0 # A writable field which will be updated based on user's purchase but not by user explicitly
+    money = models.IntegerField(null=True, blank=True, default=0)
     
     tts_model = models.TextField(choices=TTS_MODEL_NAMES,default='None')
     
