@@ -19,7 +19,7 @@ class UserForm(UserCreationForm):
 
 
 class updateUserForm(ModelForm):
-    new_username = forms.CharField(default="None",required=False)
+    new_username = forms.CharField(initial="None",required=False)
     class Meta:
         model = NewUser
         fields = ["username", "email", "first_name", "last_name", "password","new_username"]
