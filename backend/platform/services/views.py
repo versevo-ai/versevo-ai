@@ -35,7 +35,7 @@ class serviceViews(LoginRequiredMixin, View):
                         **fetched_data
                     )
                     obj.save()
-                    return JsonResponse({"Status":201 , "Data":f"{serialize("json",obj)}"})
+                    return JsonResponse({"Status":201 , "Data":f"{serialize('json',obj)}"})
                 else:
                     prev_obj = services.objects.get(user=fetched_data.get(id))
                     if prev_obj.tts_model != fetched_data.get("tts_model"):
