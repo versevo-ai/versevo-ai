@@ -51,7 +51,9 @@ class services(models.Model):
     }
     
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="NewUser")
-    money = 0
+    
+    money = 0 # A writable field which will be updated based on user's purchase but not by user explicitly
+    
     tts_model = models.TextField(choices=TTS_MODEL_NAMES,default='None')
     
     stt_model = models.TextField(choices=STT_MODEL_NAMES,default='None')
