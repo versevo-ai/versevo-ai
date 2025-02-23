@@ -30,7 +30,7 @@ class serviceViews(LoginRequiredMixin, View):
         try:
             if serviceform_data.is_valid():
                 fetched_data = serviceform_data.cleaned_data
-                if services.objects.filter(user=fetched_data.get(id)).exists() == False:
+                if services.objects.filter(user=fetched_data.get('id')).exists() == False:
                     obj = services(
                         **fetched_data
                     )
