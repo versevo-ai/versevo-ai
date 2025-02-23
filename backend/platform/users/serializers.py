@@ -15,10 +15,9 @@ class UserModelSerializer:
     This Serializer is used to Serialize Raw User's Data into REST API (JSON).
     But before going to serialize , the raw data undergoes several Validation Checks.
     """
-    def __init__(self, username:str, method:str, email:str=None, new_username:str = None, password1:str=None, password2:str=None, first_name:str=None, last_name:str=None) -> list:
+    def __init__(self, username:str, email:str=None, new_username:str = None, password1:str=None, password2:str=None, first_name:str=None, last_name:str=None) -> list:
         self.username = username
         self.new_username = new_username
-        self.method = method
         self.email = email
         self.password1 = password1
         self.password2 = password2
@@ -29,18 +28,18 @@ class UserModelSerializer:
         if self.username:
             if NewUser.objects.filter(username=self.username).count() == 1:
                 self.messagestack.append({"Message": "Username already exists"})
-                return JsonResponse(self.throw_errorlist())
+                return JsonResponse({"errors":f"{self.throw_errorlist()}"})
         else:
             self.messagestack.append({"Message": "Username Can't be Empty"})
-            return JsonResponse(self.throw_errorlist())
+            return JsonResponse({"errors":f"{self.throw_errorlist()}"})
 
         if self.email:
             if NewUser.objects.filter(email=self.email).count() == 1:
                 self.messagestack.append({"Message": "Email already exists"})
-                return JsonResponse(self.throw_errorlist())
+                return JsonResponse({"errors":f"{self.throw_errorlist()}"})
         else:
             self.messagestack.append({"Message": "Email can't be Enpty"})
-            return JsonResponse(self.throw_errorlist())
+            return JsonResponse({"errors":f"{self.throw_errorlist()}"})
         
         if self.check_password() == True:
             return True
@@ -53,13 +52,13 @@ class UserModelSerializer:
         digits = list(string.digits)
         if (not self.password1) or (not self.password2):
             self.messagestack.append({"Message":"Password Field Can't be Empty"})
-            return JsonResponse(self.throw_errorlist())
+            return JsonResponse({"errors":f"{self.throw_errorlist()}"})
         elif self.password1 != self.password2:
             self.messagestack.append({"Message":"Passwords Should Match"})
-            return JsonResponse(self.throw_errorlist())
+            return JsonResponse({"errors":f"{self.throw_errorlist()}"})
         elif len(self.password1)<8 or len(self.password1)<8:
             self.messagestack.append({"Message":"Minimum length of password is 8"})
-            return JsonResponse(self.throw_errorlist())
+            return JsonResponse({"errors":f"{self.throw_errorlist()}"})
         else:
             list_pass = list(self.password1)
             status_queue = [0,0,0,0]
@@ -83,7 +82,7 @@ class UserModelSerializer:
                     self.messagestack.append({"Message":"Atleast One Symbol Is Needed"})
                 if status_queue[3]==0:
                     self.messagestack.append({"Message":"Atleast One digit Is Needed"})
-                return JsonResponse(self.throw_errorlist())
+                return JsonResponse({"errors":f"{self.throw_errorlist()}"})
             else:
                 return True
 
@@ -115,14 +114,13 @@ class UserModelSerializer:
             # userobj.public_key = Tokens.get("public_key")
 
                 user_api = serialize("json", userobj)
-                return user_api
+                return JsonResponse({"Status":"UPDATED","data":f"{user_api}"})
         else:
             self.messagestack.append({"Message":"Object already exists in Database"})
-            return JsonResponse(self.throw_errorlist())
+            return JsonResponse({"errors":f"{self.throw_errorlist()}"})
 
     def update_user_api(self,username):
-        temp = self.messagestack
-        del temp
+        del self.messagestack
         self.messagestack = []
         if username!= None:
             obj = NewUser.objects.get(username=username)
@@ -137,10 +135,10 @@ class UserModelSerializer:
                     obj.last_name = self.last_name
                 obj.save()
                 user_api = serialize("json", obj)
-                return user_api
+                return JsonResponse({"Status":"UPDATED","data":f"{user_api}"})
             else:
                 self.messagestack.append({"Message": "This User is Blacklisted"})
-                return JsonResponse(self.throw_errorlist())
+                return JsonResponse({"errors":f"{self.throw_errorlist()}"})
         else:
             self.messagestack.append({"Message":"Object does not exists in Database"})
-            return JsonResponse(self.throw_errorlist())
+            return JsonResponse({"errors":f"{self.throw_errorlist()}"})

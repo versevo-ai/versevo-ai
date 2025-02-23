@@ -42,19 +42,10 @@ class NewUser(AbstractUser):
     Blacklisted = models.BooleanField(default=False)
     private_key = models.CharField()
     public_key = models.CharField()
-    services = models.ManyToManyField(services, through=UserService)
+    services = models.ManyToManyField(services)
     REQUIRED_FIELDS = ["email", "password"]  # Include required fields
 
     objects = newUserManager()
 
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"
-
-    def save(
-        self,
-        force_insert: bool = ..., # type: ignore
-        force_update: bool = ..., # type: ignore
-        using: str | None = ..., # type: ignore
-        update_fields: Iterable[str] | None = ..., # type: ignore
-    ) -> None:  # type: ignore
-        return super().save(force_insert, force_update, using, update_fields)

@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm, ValidationError
 from .models import NewUser
-
+from django import forms
 
 class UserForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):  # type: ignore
@@ -19,9 +19,10 @@ class UserForm(UserCreationForm):
 
 
 class updateUserForm(ModelForm):
+    new_username = forms.CharField(initial="None",required=False)
     class Meta:
         model = NewUser
-        fields = ["username", "email", "first_name", "last_name", "password"]
+        fields = ["username", "email", "first_name", "last_name", "password","new_username"]
 
 
 class LoginForm(ModelForm):

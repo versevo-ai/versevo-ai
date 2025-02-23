@@ -124,10 +124,7 @@ DATABASE_ROUTERS = ['engine.routers.ToggleRouter']
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": os.getenv("CACHE_DB"),
-        "OPTIONS": {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
+        "LOCATION": os.getenv("REDIS_DB"),
     }
 }
 
@@ -167,11 +164,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    }
-}
+# STORAGES = {
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+#     }
+# }
 
 # Will Do when all these code will be uploaded at server
 

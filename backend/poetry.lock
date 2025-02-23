@@ -514,6 +514,21 @@ six = ">=1.10,<2"
 Werkzeug = ">=1.0,<4"
 
 [[package]]
+name = "django-multiselectfield"
+version = "0.1.13"
+description = "Django multiple select field"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "django_multiselectfield-0.1.13-py3-none-any.whl", hash = "sha256:f146ef568c823a409f4021b98781666ec2debabfceca9176116d749dc39cb8b3"},
+    {file = "django_multiselectfield-0.1.13.tar.gz", hash = "sha256:437d72632f4c0ca416951917632529c3d1d42b62bb6c3c03e3396fa50265be94"},
+]
+
+[package.dependencies]
+django = ">=1.4"
+
+[[package]]
 name = "filelock"
 version = "3.17.0"
 description = "A platform independent file lock."
@@ -1597,4 +1612,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<=3.13"
-content-hash = "719e6215f58956e666f13edb06cd06f1e1d1f36c8b91b6fe00f8342040e44555"
+content-hash = "cd6f50f28764dca19293ab237ef84320a5cefb4b5604b8dae0fa98952c15aa5a"
