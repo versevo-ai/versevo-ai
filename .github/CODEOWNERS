@@ -1,5 +1,6 @@
 # https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners
 
+/ @Sambit003 @PARTHIB-DEB
 api/* @Sambit003
 backend/* @PARTHIB-DEB
 web/* @Sambit003
