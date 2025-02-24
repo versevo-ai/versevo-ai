@@ -1,61 +1,57 @@
 from django.http import JsonResponse
 from django.views import View
 from .models import *
-from .forms import *
 from django.core.serializers import serialize
 from django.contrib.auth.mixins import LoginRequiredMixin
-from users.models import NewUser
+from versemodels.models import ChatModels
 
 # Create your views here.
 
+# Whenever user will do any operation with the Versemodels at /EXPLORE/ , this view will work
 
 class serviceViews(LoginRequiredMixin, View):
-    def get(self, request, username):
-        """
-        Method to GET Data from Server
-        """
-        if services.objects.get(username=username):
-            user_data = serialize(
-                "json", services.objects.filter(username=username).all()
-            )
-            return user_data
-        else:
-            return JsonResponse({"Message": "Data Not Found"})
-
-    def post(self, request):
-        """
-        Method to POST fresh Data to Server
-        """
-        serviceform_data = UserServiceForm(request.POST or None)
+    def get(self, request):
         try:
-            if serviceform_data.is_valid():
-                fetched_data = serviceform_data.cleaned_data
-                if services.objects.filter(user=fetched_data.get('id')).exists() == False:
-                    obj = services(
-                        **fetched_data
-                    )
-                    obj.save()
-                    return JsonResponse({"Status":201 , "Data":f"{serialize('json',obj)}"})
-                else:
-                    prev_obj = services.objects.get(user=fetched_data.get(id))
-                    if prev_obj.tts_model != fetched_data.get("tts_model"):
-                        prev_obj.tts_model = fetched_data.get("tts_model")
-                    if prev_obj.stt_model != fetched_data.get("stt_model"):
-                        prev_obj.stt_model = fetched_data.get("stt_model")
-                    if prev_obj.sts_model != fetched_data.get("sts_model"):
-                        prev_obj.sts_model = fetched_data.get("sts_model")
-                    prev_obj.save()
-                    return JsonResponse({"Status":200 , "Data":f"{serialize("json",prev_obj)}"})
-        except Exception:
-            return JsonResponse({"Status":"ERROR","Message":"Invalid Data in Form"})
+            return JsonResponse({
+                "Message":"FETCHED",
+                "Data":f"{serialize('json',services.objects.filter(username=request.user).all())}"
+            })
+        except Exception as e:
+            return JsonResponse({
+                "Message":f"Error Occured - {e}"
+            })
 
-    def delete(self, request, username):
-        """
-        Method to DELETE an user's data
-        """
+    def post(self, request,Mname):
+        # WHENEVR PURCHASE HAPPENS , SERVICE OBJECT GET CREATED
         try:
-            if username and services.objects.filter(username=username):
-                services.objects.filter(username=username).all().delete()
-                return JsonResponse({"Message": f"Data of {username} is deleted"})
-        except Exception:
-            return JsonResponse({"Message":"User Does not Exists"})
+            if services.objects.filter(username=request.user).exists()==False:
+                model_obj = ChatModels.objects.get(Mname=Mname)
+                service_obj = services(**model_obj)
+                service_obj.save()
+                return JsonResponse({
+                    "Message":"CREATED",
+                    "Data":f"{serialize('json',service_obj)}"
+                })
+            else:
+                model_obj = ChatModels.objects.get(Mname=Mname)
+                service_obj = services.objects.get(username=request.user,Mname=model_obj) 
+                service_obj.Mname = model_obj
+                service_obj.Mcategory = model_obj.Mcategory
+                service_obj.Mparams = model_obj.Mparams
+                service_obj.Mtags = model_obj.Mtags
+                service_obj.Mdescription = model_obj.Mdescription
+                service_obj.Mprice = model_obj.Mprice
+                service_obj.save()
+                return JsonResponse({
+                    "Message":"UPDATED",
+                    "Data":f"{serialize('json',service_obj)}"
+                })
+        except Exception as e:
+            return JsonResponse({"Message":"ERROR","Message":f"{e}"})
+
+    def delete(self, request, Mname):
+        try:
+            services.objects.filter(username=request.user , Mname=ChatModels.objects.get(Mname=Mname)).all().delete()
+            return JsonResponse({"Message":"Service Removed"})
+        except Exception as e:
+            return JsonResponse({"Message":"ERROR","Message":f"{e}"})

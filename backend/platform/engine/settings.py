@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "corsheaders",  # For Django-CORS-Headers
     "services",
     "users",
+    "versemodels",
     "django_eventstream",
 ]
 
