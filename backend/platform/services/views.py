@@ -26,7 +26,15 @@ class serviceViews(LoginRequiredMixin, View):
         try:
             if services.objects.filter(username=request.user).exists()==False:
                 model_obj = ChatModels.objects.get(Mname=Mname)
-                service_obj = services(**model_obj)
+                service_obj = services(
+                    username=request.user,
+                    Mname=model_obj,
+                    Mcategory=model_obj.Mcategory,
+                    Mparams=model_obj.Mparams,
+                    Mtags=model_obj.Mtags,
+                    Mdescription=model_obj.Mdescription,
+                    Mprice=model_obj.Mprice
+                )
                 service_obj.save()
                 return JsonResponse({
                     "Message":"CREATED",
