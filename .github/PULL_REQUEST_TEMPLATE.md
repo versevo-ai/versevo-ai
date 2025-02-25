@@ -4,7 +4,7 @@
 
 <!-- Provide a summary of the changes you've made -->
 
-Fixes #[ISSUE_NUMBER]
+Fixes #ISSUE_NUMBER
 
 ## Implementation Details
 
