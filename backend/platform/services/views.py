@@ -59,7 +59,10 @@ class serviceViews(LoginRequiredMixin, View):
 
     def delete(self, request, Mname):
         try:
-            services.objects.filter(username=request.user , Mname=ChatModels.objects.get(Mname=Mname)).all().delete()
+            model_obj = ChatModels.objects.get(Mname=Mname)
+            services.objects.filter(username=request.user, Mname=model_obj).all().delete()
             return JsonResponse({"Message":"Service Removed"})
+        except ChatModels.DoesNotExist:
+            return JsonResponse({"Message":"ERROR","Message":"ChatModel with the given Mname does not exist"})
         except Exception as e:
             return JsonResponse({"Message":"ERROR","Message":f"{e}"})
