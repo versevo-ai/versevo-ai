@@ -41,6 +41,7 @@ class VersevoModelViews(LoginRequiredMixin,View):
                         "Data":f"{serialize('json',obj)}"
                     })
                 else:
+                    obj.save()
                     obj.update_and_save()
                     return JsonResponse({
                         "Message":"UPDATED",
