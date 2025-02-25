@@ -29,7 +29,7 @@ class ChatModels(models.Model):   # This model will populate data at /EXPLORE-MO
         if obj.Mtags != self.Mtags:
             obj.Mtags = self.Mtags
         if obj.Mprice != self.Mprice:
-            obj.Mtags = self.Mprice
+            obj.Mprice = self.Mprice
         obj.save()
         
     
