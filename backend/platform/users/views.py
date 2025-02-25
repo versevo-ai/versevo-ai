@@ -9,31 +9,14 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-# Create your views here.
-
-
 class userViews(LoginRequiredMixin, View):
-    def get(self, request, username):
-
-        """
-        Method to GET Data from Server
-        """
-
-        # Tokens will be fetched from Security Module and then verification will be done in GET Request
-
-        if NewUser.objects.get(username=username):
-            user_data = serialize(
-                "json", NewUser.objects.filter(username=username).all()
-            )
-            return user_data
-        else:
-            return JsonResponse({"Status":"ERROR","Message":f"username {username} already exists"})
+    def get(self, request):
+        return JsonResponse({
+            "Message":"FETCHED",
+            "Data":f"{serialize('json',NewUser.objects.filter(username=request.user.username).all())}"
+        })
 
     def post(self, request):
-
-        """
-        Method to POST fresh Data to Server
-        """
         userform_data = UserForm(request.POST or None)
         try:
             if userform_data.is_valid():
@@ -73,9 +56,6 @@ class userViews(LoginRequiredMixin, View):
 
 
     def delete(self, request):
-        """
-        Method to DELETE an user's data
-        """
         try:
             if request.user is not None:
                 uname = request.user.username
