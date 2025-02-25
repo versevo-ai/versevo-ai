@@ -63,7 +63,7 @@ class VersevoModelViews(LoginRequiredMixin,View):
 
 
 class ChatwithModelViews(LoginRequiredMixin,View):
-    def get(self,request,username,Mname,chat_no:None):
+    def get(self,request,username,Mname,chat_no=None):
         try:
             pass
         except Exception as e:
