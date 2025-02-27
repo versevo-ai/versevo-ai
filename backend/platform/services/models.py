@@ -13,50 +13,6 @@ class services(models.Model):       # This model will populate data at /USER-PRO
     # From there user can see the details and whenever user purchases ,
     # The corresponding service model record will be updated
     
-    # TTS_MODEL_DETAILS = Chatmodels.objects.filter(Mcategory="Text-To-Speech").all()
-    
-    # TTS_MODEL_NAMES={}
-    
-    # for object in TTS_MODEL_DETAILS:
-    #     TTS_MODEL_NAMES.setdefault(object.Mname) = object.Mname
-    
-    # TTS_MODEL_PRICES= {
-    #     'None': 0
-    # }
-    
-    # for object in TTS_MODEL_DETAILS:
-    #     TTS_MODEL_PRICES.setdefault(object.Mname) = object.Mprice
-    
-    
-    # STT_MODEL_DETAILS = Chatmodels.objects.filter(Mcategory="Speech-To-Text").all()
-    
-    # STT_MODEL_NAMES={}
-    
-    # for object in STT_MODEL_DETAILS:
-    #     STT_MODEL_NAMES.setdefault(object.Mname) = object.Mname
-    
-    # STT_MODEL_PRICES= {
-    #     'None': 0
-    # }
-    
-    # for object in STT_MODEL_DETAILS:
-    #     STT_MODEL_PRICES.setdefault(object.Mname) = object.Mprice
-        
-        
-    # STS_MODEL_DETAILS = Chatmodels.objects.filter(Mcategory="Speech-to-Speech").all()
-    
-    # STS_MODEL_NAMES={}
-    
-    # for object in STS_MODEL_DETAILS:
-    #     STS_MODEL_NAMES.setdefault(object.Mname) = object.Mname
-    
-    # STS_MODEL_PRICES= {
-    #     'None': 0
-    # }
-    
-    # for object in STS_MODEL_DETAILS:
-    #     STS_MODEL_PRICES.setdefault(object.Mname) = object.Mprice
-
     
     username = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="NewUser")
     Mname = models.ForeignKey(ChatModels,on_delete=models.SET_NULL,related_name="ChatModels")
