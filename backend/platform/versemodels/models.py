@@ -44,6 +44,7 @@ class ModelRequestResponse(models.Model):   # After WS connection and room creat
     
     username = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="NewUser")
     Mname = models.ForeignKey(ChatModels,on_delete=models.SET_NULL,related_name="ChatModels")
+    page_no = models.IntegerField()
     chat_no = models.IntegerField()
     question = models.CharField()
     answer = models.CharField()
