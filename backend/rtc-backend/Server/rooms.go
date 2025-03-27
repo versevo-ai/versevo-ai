@@ -1,13 +1,14 @@
 package Server
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"fmt"
+	"log"
+	"sync"
+
 	"github.com/gorilla/websocket"
 	"github.com/pion/webrtc/v3"
-	"log"
-	"math/rand"
-	"sync"
-	"time"
 )
 
 type Participant struct {
@@ -31,19 +32,34 @@ func (r *RoomMap) Get(roomID string) []Participant {
 	return r.Map[roomID]
 }
 
-func (r *RoomMap) CreateRoom() string {
+// func (r *RoomMap) CreateRoom() string {
+// 	r.Mutex.Lock()
+// 	defer r.Mutex.Unlock()
+// 	rand.Seed(time.Now().UnixNano())
+// 	var Letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+// 	b := make([]rune, 8)
+
+// 	for i := range b {
+// 		b[i] = Letters[rand.Intn(len(Letters))]
+// 	}
+// 	roomID := string(b)
+// 	r.Map[roomID] = []Participant{}
+// 	return roomID
+// }
+
+func (r *RoomMap) CreateRoom() (string, error) {
 	r.Mutex.Lock()
 	defer r.Mutex.Unlock()
-	rand.Seed(time.Now().UnixNano())
-	var Letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
-	b := make([]rune, 8)
 
-	for i := range b {
-		b[i] = Letters[rand.Intn(len(Letters))]
+	b := make([]byte, 12) // Generate 12 random bytes
+	_, err := rand.Read(b)
+	if err != nil {
+		return "", fmt.Errorf("failed to generate random bytes: %w", err)
 	}
-	roomID := string(b)
+
+	roomID := base64.RawURLEncoding.EncodeToString(b) // Encode to URL-safe base64
 	r.Map[roomID] = []Participant{}
-	return roomID
+	return roomID, nil
 }
 
 func (r *RoomMap) InsertIntoRoom(roomID string, host bool, conn *websocket.Conn) (*webrtc.PeerConnection, error) { // Return PeerConnection
