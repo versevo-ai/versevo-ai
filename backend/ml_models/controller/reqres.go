@@ -1,5 +1,8 @@
 package main
 
+// THIS IS A DEMO SCRIPT
+// HAVE TO MODIFY ACCORDINGLY
+
 import (
 	"bytes"
 	"encoding/json"
