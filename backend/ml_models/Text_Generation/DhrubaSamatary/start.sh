@@ -1,1 +1,0 @@
-ollama serve && ollama run hf.co/dhrubasumatary/sarvam-1-quantized

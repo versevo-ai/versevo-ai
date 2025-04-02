@@ -1,1 +1,0 @@
-ollama serve && ollama run hf.co/DevQuasar/sarvamai.sarvam-1-GGUF:Q4_K_M
