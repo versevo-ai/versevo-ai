@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev:subscription": "cd ./api/subscription && uvicorn subscription.main:app --reload",
-    "setup:subscription": ". venv/bin/activate"
+    "setup:subscription": ". venv/bin/activate",
+    "web:dev": "cd ./web && pnpm run dev"
   },
   "private": true,
   "dependencies": {
