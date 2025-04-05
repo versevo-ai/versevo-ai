@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import {Noto_Sans_Lao} from "next/font/google";
+
+const notoSansLao = Noto_Sans_Lao({
+  subsets: ["latin"],
+})
 
 
 export const metadata: Metadata = {
@@ -14,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={notoSansLao.className}>
         {children}
       </body>
     </html>
