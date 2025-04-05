@@ -22,11 +22,16 @@ export default function Hero() {
     }, []);
 
     const gradientStyle = {
-        background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, #00BFFF, #4169E1, #3CB371)`,
-        transition: 'background 0.5s ease-out',
-        backgroundSize: '200% 200%',
-        animation: 'gradientFlow 8s ease infinite'
-    }
+        width: '100vw',
+        height: '100vh',
+        background: `
+          radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(60, 179, 113, 0.6) 0%, transparent 20%),
+          #00BFFF
+        `,
+        backgroundBlendMode: 'screen',
+        transition: 'background 0.1s ease-out',
+      };
+      
 
     return (
         <div className="h-screen w-full flex flex-col overflow-hidden" style={gradientStyle}>
@@ -40,12 +45,12 @@ export default function Hero() {
             </motion.div>
 
             <div className="flex-grow flex items-center justify-center">
-                <div className="max-w-3xl mx-auto py-16 px-4 text-center">  
+                <div className="max-w-3xl mx-auto py-8 md:py-16 px-4 text-center">  
                     <motion.h1 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-6xl font-bold text-white mb-4"
+                        className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 md:mb-4"
                     >
                         The <span className="text-gray-200">Ultimate</span>
                         <br />
@@ -56,7 +61,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="text-white/80 mb-12 text-lg max-w-2xl mx-auto"
+                        className="text-white/80 mb-8 md:mb-12 text-base md:text-lg max-w-2xl mx-auto px-2"
                     >
                         Unlock Global Understanding. 200+ Languages. Seamless X-2-X Translation 
                         & Transcription. We&apos;re breaking down language barriers, one breakthrough 
@@ -67,7 +72,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
-                        className="flex-grow flex items-center justify-center max-w-md mx-auto my-auto"
+                        className="flex-grow flex items-center justify-center max-w-xs sm:max-w-sm md:max-w-md mx-auto my-auto"
                     >
                         <JoinWaitlist/>
                     </motion.div>
