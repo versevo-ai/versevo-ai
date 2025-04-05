@@ -2,6 +2,8 @@
 import {useState, useEffect} from "react"
 import Header from "./header";
 import JoinWaitlist from "./joinWaitlist";
+import { motion } from "framer-motion"; 
+
 export default function Hero() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -21,36 +23,56 @@ export default function Hero() {
 
     const gradientStyle = {
         background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, #00BFFF, #4169E1, #3CB371)`,
-        transition: 'background 0.3s ease',
+        transition: 'background 0.5s ease-out',
+        backgroundSize: '200% 200%',
+        animation: 'gradientFlow 8s ease infinite'
     }
 
     return (
         <div className="h-screen w-full flex flex-col overflow-hidden" style={gradientStyle}>
-            <Header/>
+            <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center justify-center"
+            >
+                <Header/>
+            </motion.div>
 
             <div className="flex-grow flex items-center justify-center">
                 <div className="max-w-3xl mx-auto py-16 px-4 text-center">  
-                <h1 className="text-6xl font-bold text-white mb-4">
-            The <span className="text-gray-200">Ultimate</span>
-            <br />
-            Audio AI Platform
-          </h1>
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="text-6xl font-bold text-white mb-4"
+                    >
+                        The <span className="text-gray-200">Ultimate</span>
+                        <br />
+                        Audio AI Platform
+                    </motion.h1>
           
-          {/* Subheading */}
-          <p className="text-white/80 mb-12 text-lg max-w-2xl mx-auto">
-            Unlock Global Understanding. 200+ Languages. Seamless X-2-X Translation 
-            & Transcription. We&apos;re breaking down language barriers, one breakthrough 
-            at a time.
-          </p>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="text-white/80 mb-12 text-lg max-w-2xl mx-auto"
+                    >
+                        Unlock Global Understanding. 200+ Languages. Seamless X-2-X Translation 
+                        & Transcription. We&apos;re breaking down language barriers, one breakthrough 
+                        at a time.
+                    </motion.p>
 
-          <div className="flex max-w-md mx-auto">
-                <JoinWaitlist/>
-            </div>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                        className="flex-grow flex items-center justify-center max-w-md mx-auto my-auto"
+                    >
+                        <JoinWaitlist/>
+                    </motion.div>
                 </div>
-                
             </div>
-
-            
         </div>
     );
 }
