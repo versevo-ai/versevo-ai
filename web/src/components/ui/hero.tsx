@@ -3,6 +3,7 @@ import {useState, useEffect} from "react"
 import Header from "./header";
 import JoinWaitlist from "./joinWaitlist";
 import { motion } from "framer-motion"; 
+import ComingSoon from "./ComingSoon";
 
 export default function Hero() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -22,15 +23,15 @@ export default function Hero() {
     }, []);
 
     const gradientStyle = {
-        width: '100vw',
-        height: '100vh',
-        background: `
-          radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(60, 179, 113, 0.6) 0%, transparent 20%),
-          #00BFFF
-        `,
-        backgroundBlendMode: 'screen',
-        transition: 'background 0.1s ease-out',
-      };
+    width: '100vw',
+    height: '100vh',
+    background: `
+      radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(60, 179, 113, 0.6) 0%, transparent 20%),
+      #00BFFF
+    `,
+    backgroundBlendMode: 'screen',
+    transition: 'background 0.1s ease-out',
+  };
       
 
     return (
@@ -45,12 +46,12 @@ export default function Hero() {
             </motion.div>
 
             <div className="flex-grow flex items-center justify-center">
-                <div className="max-w-3xl mx-auto py-8 md:py-16 px-4 text-center">  
+                <div className="max-w-3xl mx-auto py-16 px-4 text-center">  
                     <motion.h1 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 md:mb-4"
+                        className="text-6xl font-bold text-white mb-4"
                     >
                         The <span className="text-gray-200">Ultimate</span>
                         <br />
@@ -61,7 +62,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="text-white/80 mb-8 md:mb-12 text-base md:text-lg max-w-2xl mx-auto px-2"
+                        className="text-white/80 mb-12 text-lg max-w-2xl mx-auto"
                     >
                         Unlock Global Understanding. 200+ Languages. Seamless X-2-X Translation 
                         & Transcription. We&apos;re breaking down language barriers, one breakthrough 
@@ -72,11 +73,14 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
-                        className="flex-grow flex items-center justify-center max-w-xs sm:max-w-sm md:max-w-md mx-auto my-auto"
+                        className="flex-grow flex items-center justify-center max-w-md mx-auto my-auto"
                     >
                         <JoinWaitlist/>
                     </motion.div>
                 </div>
+            </div>
+            <div className="hidden flex-grow sm:flex items-center justify-center max-w-md mx-auto mt-8 sm:mt-6 md:mt-4">
+                <ComingSoon/>
             </div>
         </div>
     );
