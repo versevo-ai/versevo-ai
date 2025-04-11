@@ -55,7 +55,7 @@ class serviceViews(LoginRequiredMixin, View):
                     "Data":f"{serialize('json',service_obj)}"
                 })
         except Exception as e:
-            return JsonResponse({"Message":"ERROR","Message":f"{e}"})
+            return JsonResponse({"Message":f"ERROR-{e}"})
 
     def delete(self, request, Mname):
         try:

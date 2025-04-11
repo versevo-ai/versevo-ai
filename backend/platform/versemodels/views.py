@@ -4,6 +4,7 @@ from .models import *
 from .forms import *
 from django.core.serializers import serialize
 from django.contrib.auth.mixins import LoginRequiredMixin
+from users.models import NewUser
 
 # Create your views here.
 
@@ -11,10 +12,11 @@ class VersevoModelViews(LoginRequiredMixin,View):
     def get(self, request,Mtags=None,Mname=None):
         try:
             if Mtags or Mname:
-                if ChatModels.objects.filter(Mname=Mname).exists()==True:
+                obj = ChatModels.objects.filter(Mname=Mname)
+                if obj.exists()==True:
                     return JsonResponse({
                         "Message":"FETCHED",
-                        "Data":f"{serialize('json',ChatModels.objects.filter(Mname=Mname).all())}"
+                        "Data":f"{serialize('json',obj.all())}"
                     })
                 else:
                     return JsonResponse({"Message":"Incorrect Parameters"})
@@ -27,53 +29,109 @@ class VersevoModelViews(LoginRequiredMixin,View):
             return JsonResponse({
                 "Message":f"Error Occured - {e}"
             })
-    
-    def post(self,request):
-        FormObject = ChatModelsForm(request.POST or None)
+
+
+
+class ChatwithModelViews(LoginRequiredMixin,View):
+    def get(self,request,Mname,page_no,chat_no=None):
         try:
-            if FormObject.is_valid():
-                dict_data = FormObject.cleaned_data
-                obj = ChatModels(**dict_data)
-                if ChatModels.objects.filter(Mname=obj.Mname).exists() == False:
+            if chat_no is not None:
+                obj = ModelRequestResponse.objects.filter(
+                    username = NewUser.objects.get(username = request.user.username),
+                    Mname = ChatModels.objects.get(Mname=Mname),
+                    page_no = page_no,
+                    chat_no = chat_no
+                )
+                if obj.exists()==True:
+                    return JsonResponse({
+                        "Message":"FETCHED",
+                        "Data":f"{serialize('json',obj.all())}"
+                    })
+                else:
+                    return JsonResponse({"Message":"Incorrect Parameters"})
+            else:
+                obj = ModelRequestResponse.objects.filter(
+                    username = NewUser.objects.get(username = request.user.username),
+                    Mname = ChatModels.objects.get(Mname=Mname),
+                    page_no = page_no
+                )
+                if obj.exists()==True:
+                    return JsonResponse({
+                        "Message":"FETCHED",
+                        "Data":f"{serialize('json',obj.all())}"
+                    })
+                else:
+                    return JsonResponse({"Message":"Incorrect Parameters"})
+        except Exception as e:
+            return JsonResponse({
+                "Message":f"Error Occured - {e}"
+            })
+    
+    def post(self,request,Mname):
+        Formobject = ModelRequestResponseForm(request.POST or None)
+        try:
+            if Formobject.is_valid():
+                data = Formobject.cleaned_data
+                if ModelRequestResponse.objects.filter(
+                    username = NewUser.objects.get(username=request.user.username),
+                    Mname = ChatModels.objects.get(Mname=Mname),
+                    page_no = data.get("page_no"),
+                    chat_no = data.get("chat_no"),
+                ).exists():
+                    obj = ModelRequestResponse.objects.get(
+                    username = NewUser.objects.get(username=request.user.username),
+                    Mname = ChatModels.objects.get(Mname=Mname),
+                    page_no = data.get("page_no"),
+                    chat_no = data.get("chat_no")
+                )
+                    obj.question = data.get("question")
+                    obj.answer = data.get("answer")
+                    obj.save()
+                    return JsonResponse({
+                        "Message":"UPDATED",
+                        "Data":f"{serialize('json',obj)}"
+                    })
+                else:
+                    obj = ModelRequestResponse(
+                        username = NewUser.objects.get(username=request.user.username),
+                        Mname = ChatModels.objects.get(Mname=Mname),
+                        page_no = data.get("page_no"),
+                        chat_no = data.get("chat_no"),
+                        question = data.get("question"),
+                        answer = data.get("answer")
+                    )
                     obj.save()
                     return JsonResponse({
                         "Message":"CREATED",
                         "Data":f"{serialize('json',obj)}"
                     })
-                else:
-                    obj.save()
-                    obj.update_and_save()
-                    return JsonResponse({
-                        "Message":"UPDATED",
-                        "Data":f"{serialize('json',obj)}"
-                    })
+            else:
+                return JsonResponse({"Message":"Invalid Data in Form"})
+        except Exception as e:
+            return JsonResponse({"Message":f"ERROR-f{e}"})
+    
+
+    
+    def delete(self,request,Mname,page_no,chat_no=None):
+        try:
+            if chat_no is not None:
+                obj = ModelRequestResponse.objects.filter(
+                    username = NewUser.objects.get(username = request.user.username),
+                    Mname = ChatModels.objects.get(Mname=Mname),
+                    page_no = page_no,
+                    chat_no = chat_no
+                ).all()
+                obj.delete()
+                return JsonResponse({"Message":"Chat Removed"})
+            else:
+                obj = ModelRequestResponse.objects.filter(
+                    username = NewUser.objects.get(username = request.user.username),
+                    Mname = ChatModels.objects.get(Mname=Mname),
+                    page_no = page_no
+                ).all()
+                obj.delete()
+                return JsonResponse({"Message":"Page of chats removed"})
+        except ModelRequestResponse.DoesNotExist:
+            return JsonResponse({"Message":"ERROR","Message":"No Information related to this chat/s"})
         except Exception as e:
             return JsonResponse({"Message":"ERROR","Message":f"{e}"})
-
-    
-    def delete(self,request,Mtags=None,Mname=None):
-        if Mtags or Mname:
-            if ChatModels.objects.filter(Mname=Mname).exists()==True:
-                ChatModels.objects.get(Mname=Mname).delete()
-                return JsonResponse({"Message":"ML Model Deleted"})
-            else:
-                return JsonResponse({"Message":"Incorrect Parameters"})
-        else:
-            return JsonResponse({"Message":"Parameters Can't be None"})
-
-
-class ChatwithModelViews(LoginRequiredMixin,View):
-    def get(self,request,username,Mname,chat_no=None):
-        try:
-            pass
-        except Exception as e:
-            pass
-    
-    def post(self,request):
-        Formobject = ModelRequestResponseForm(request.POST or None)
-        try:
-            pass
-        except Exception as e:
-            pass
-    def delete(self,request,chat_no:None):
-        pass
