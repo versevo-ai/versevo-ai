@@ -16,7 +16,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const core = require('@actions/core');
             try {
               console.log(`Attempting to assign PR #${context.payload.pull_request.number} to author: ${context.payload.pull_request.user.login}`);
 
@@ -30,5 +29,5 @@ jobs:
               console.log('Assignment successful');
             } catch (error) {
               console.log(`Error details: ${JSON.stringify(error)}`);
-              core.setFailed(`Action failed with error: ${error.message || error}`);
+              throw error;
             }
