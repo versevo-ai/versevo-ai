@@ -1,0 +1,92 @@
+{
+  "name": "subscription",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "api/subscription",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "api"
+      }
+    },
+    "start": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uvicorn subscription.main:app --workers 4 --host 0.0.0.0 --port $SUBS_PORT",
+        "cwd": "api"
+      }
+    },
+    "dev": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uvicorn subscription.main:app --reload",
+        "cwd": "api"
+      }
+    },
+    "dev:concurrent": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uvicorn subscription.main:app --workers 4",
+        "cwd": "api"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "outputPath": "api/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:ruff-check",
+      "outputs": [],
+      "options": {
+        "lintFilePatterns": [
+          "subscription",
+          "tests"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/api/unittests",
+        "{workspaceRoot}/coverage/api"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "api"
+      }
+    }
+  },
+  "tags": []
+}

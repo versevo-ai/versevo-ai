@@ -1,0 +1,12 @@
+{
+  "name": "@versevo-ai/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev:subscription": "cd ./api/subscription && uvicorn subscription.main:app --reload",
+    "setup:subscription": "py -3.12 -m venv venv && . venv/bin/activate && cd ./api && pip install poetry && poetry install"
+  },
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {}
+}
