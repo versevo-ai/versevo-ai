@@ -1,0 +1,1 @@
+ollama serve && ollama run hf.co/MaziyarPanahi/sarvam-1-GGUF:Q5_K_M
