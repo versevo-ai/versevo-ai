@@ -19,7 +19,7 @@ export default function Header() {
                     alt="Versevo Logo"
                     width={24}
                     height={28}
-                    className="rounded-full sm:w-[28px] sm:h-[32px]"
+                    className="sm:w-[28px] sm:h-[32px]"
                 />
             </motion.div>
 
