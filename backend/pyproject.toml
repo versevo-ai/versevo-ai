@@ -41,6 +41,7 @@ readme = 'README.md'
   django-eventstream = "^5.3.1"
   websockets = "^14.1"
   msgpack = "^1.1.0"
+  django-multiselectfield = "^0.1.13"
 
   [tool.poetry.group.dev.dependencies]
   autopep8 = "2.3.1"
