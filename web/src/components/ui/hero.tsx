@@ -1,41 +1,19 @@
 "use client";
-import {useState, useEffect} from "react"
+
+
 import Header from "./header";
 import JoinWaitlist from "./joinWaitlist";
 import { motion } from "framer-motion"; 
-import ComingSoon from "./ComingSoon";
+import Image from "next/image";
+import imageConversation from "@/../public/imageConversation.png"
 
 export default function Hero() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            const x = (e.clientX / window.innerWidth) * 100;
-            const y = (e.clientY / window.innerHeight) * 100;
-            setMousePosition({ x, y });
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
     
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
 
-    const gradientStyle = {
-    width: '100vw',
-    height: '100vh',
-    background: `
-      radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(60, 179, 113, 0.6) 0%, transparent 20%),
-      #00BFFF
-    `,
-    backgroundBlendMode: 'screen',
-    transition: 'background 0.1s ease-out',
-  };
-      
+   
 
     return (
-        <div className="h-screen w-full flex flex-col overflow-hidden" style={gradientStyle}>
+        <div className="h-screen overflow-y-auto w-full flex flex-col bg-gradient-to-br from-blue-500 via-blue-300 to-cyan-200">
             <motion.div 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -51,9 +29,9 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-6xl font-bold text-white mb-4"
+                        className="text-6xl text-[#073E79] mb-4"
                     >
-                        The <span className="text-gray-200">Ultimate</span>
+                        The <span className="text-[#073E79] font-bold">Ultimate</span>
                         <br />
                         Audio AI Platform
                     </motion.h1>
@@ -62,11 +40,9 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="text-white/80 mb-12 text-lg max-w-2xl mx-auto"
+                        className="text-[#073E79] mb-12 font-normal max-w-2xl mx-auto"
                     >
-                        Unlock Global Understanding. 200+ Languages. Seamless X-2-X Translation 
-                        & Transcription. We&apos;re breaking down language barriers, one breakthrough 
-                        at a time.
+                        Unlock Global Understanding. 200+ Languages. Seamless Translation & Transcription. We&apos;re breaking down language barriers, one breakthrough at a time.
                     </motion.p>
 
                     <motion.div 
@@ -79,8 +55,43 @@ export default function Hero() {
                     </motion.div>
                 </div>
             </div>
-            <div className="hidden flex-grow sm:flex items-center justify-center max-w-md mx-auto mt-8 sm:mt-6 md:mt-4">
-                <ComingSoon/>
+            <div className="w-full pb-16 mt-16">
+                <div className="grid md:grid-cols-2 gap-6 items-center justify-around">
+
+                    <motion.div 
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, delay: 0.8 }}
+                        className="flex justify-center"
+                    >
+                        <div className="rounded-2xl overflow-hidden shadow-2xl max-w-lg">
+                            <Image 
+                                src={imageConversation} 
+                                alt="Business conversation illustration" 
+                                width={900} 
+                                height={600} 
+                                className="w-full h-auto object-cover"
+                            />
+                        </div>
+                    </motion.div>
+
+                    <motion.div 
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, delay: 1.0 }}
+                        className="text-center items-center justify-center"
+                    >
+                        <h2 className="text-3xl md:text-4xl text-[#073E79] mb-6">
+                            Keep <span className="font-extrabold">Confidence</span><br />
+                            in your <span className="font-extrabold">Mother<br />Language</span>
+                        </h2>
+                        <p className="text-[#073E79] text-lg leading-relaxed opacity-90">
+                            Unlock the best version of you in <span className="font-semibold">Business Deals</span><br />
+                            while we handle the translation, with best ever<br />
+                            accuracy
+                        </p>
+                    </motion.div>
+                </div>
             </div>
         </div>
     );
