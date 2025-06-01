@@ -1,19 +1,22 @@
 export default function JoinWaitlist() {
     return (
-        <div className="w-full max-w-[600px] mx-auto px-4 sm:px-0">
-            <form className="flex flex-col sm:flex-row w-full gap-3 sm:gap-0 sm:rounded-[40px] overflow-hidden shadow-md bg-transparent">
+        <div className="w-full flex justify-center px-4 py-4">
+            <form className="flex w-full max-w-2xl rounded-full overflow-hidden shadow-md bg-[#DFF6FD]">
                 <input
                     type="email"
                     placeholder="Enter your Email Address"
-                    className="w-full px-4 sm:px-6 py-3 text-base sm:text-xl text-blue-900 bg-blue-100 focus:outline-none rounded-[40px] sm:rounded-l-[40px] sm:rounded-tr-none sm:rounded-br-none"
+                    className="flex-1 px-6 py-3 text-lg text-[#075985] bg-[#DFF6FD] focus:outline-none rounded-full"
                     required
                 />
-                <button
-                    type="submit"
-                    className="w-full sm:w-[198px] py-3 text-base sm:text-xl text-blue-900 bg-green-300 hover:bg-green-400 transition-colors rounded-[40px] sm:rounded-r-[40px] sm:rounded-tl-none sm:rounded-bl-none"
-                >
-                    Join Waitlist
-                </button>
+                
+                <div className="p-[2px] rounded-full bg-[conic-gradient(at_top_right,_#0D72DF,_#073E79,_#88E4FF,_#073E79)]">
+                    <button
+                        type="submit"
+                        className="px-6 py-3 text-lg font-semibold text-[#075985] bg-[#B2E2F0] rounded-full hover:bg-[#cbe9f6] transition-colors w-full h-full"
+                    >
+                        Join Waitlist
+                    </button>
+                </div>
             </form>
         </div>
     );
