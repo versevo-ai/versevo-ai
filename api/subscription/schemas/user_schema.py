@@ -1,7 +1,7 @@
-from pydantic import BaseModel, EmailStr, validator, ConfigDict
+from pydantic import BaseModel, EmailStr, field_validator, validator, ConfigDict
 from typing import Optional
 from datetime import datetime
-import re
+from ..utils.validators import validate_password_strength, clean_string, validate_username
 
 class UserBase(BaseModel):
     username: str
@@ -12,64 +12,28 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password1: str
     password2: str
-    
-    @validator('username')
-    def validate_username(cls, v):
+
+    @field_validator('username')
+    def validate_username_field(cls, v):
         if not v or len(v.strip()) == 0:
             raise ValueError("Username cannot be empty")
-        # Remove spaces from username
-        return "".join(v.split(" "))
-    
-    @validator('email') 
-    def validate_email(cls, v):
-        # Remove spaces from email
-        return "".join(str(v).split(" "))
-    
-    @validator('password2')
+        return clean_string(v)
+
+    @field_validator('email')
+    def validate_email_field(cls, v):
+        return clean_string(str(v))
+
+    @field_validator('password2')
     def passwords_match(cls, v, values):
         if 'password1' in values and v != values['password1']:
             raise ValueError("Passwords don't match")
         return v
-    
-    @validator('password1')
-    def validate_password_strength(cls, v):
-        if len(v) < 8:
-            raise ValueError("Password must be at least 8 characters long")
-        
-        # Password strength validation (matching Django logic)
-        lower = "abcdefghijklmnopqrstuvwxyz"
-        upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?"
-        digits = "0123456789"
-        
-        status_queue = [0, 0, 0, 0]  # [lower, upper, symbols, digits]
-        
-        for char in v:
-            if char in lower:
-                status_queue[0] = 1
-            elif char in upper:
-                status_queue[1] = 1
-            elif char in symbols:
-                status_queue[2] = 1
-            elif char in digits:
-                status_queue[3] = 1
-            
-            if status_queue == [1, 1, 1, 1]:
-                break
-        
-        error_messages = []
-        if status_queue[0] == 0:
-            error_messages.append("At least one lowercase letter is needed")
-        if status_queue[1] == 0:
-            error_messages.append("At least one uppercase letter is needed")
-        if status_queue[2] == 0:
-            error_messages.append("At least one symbol is needed")
-        if status_queue[3] == 0:
-            error_messages.append("At least one digit is needed")
-        
-        if error_messages:
+
+    @field_validator('password1')
+    def validate_password_strength_field(cls, v):
+        is_valid, error_messages = validate_password_strength(v)
+        if not is_valid:
             raise ValueError("; ".join(error_messages))
-        
         return v
 
 class UserUpdate(BaseModel):
@@ -89,7 +53,7 @@ class UserResponse(UserBase):
     date_joined: datetime
     last_login: Optional[datetime] = None
     Blacklisted: bool
-    
+
     model_config = ConfigDict(from_attributes=True)
 
 class Token(BaseModel):
