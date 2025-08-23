@@ -22,7 +22,7 @@ include = "subscription"
 
 [tool.poetry.dependencies]
 
-python = "3.12.1"
+python = ">=3.12,<=3.13"
 fastapi = {extras = ["standard"], version = "^0.112.0"}
 uvicorn = {extras = ["standard"], version = "^0.30.5"}
 supabase = "^2.6.0"
