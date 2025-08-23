@@ -60,3 +60,6 @@ Thumbs.db
 backend/platform/.env
 backend/talk/.env
 backend/.ruff_cache
+
+# testing reports
+reports/
