@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="8" time="6.158" timestamp="2025-08-23T06:33:03.613848+00:00" hostname="pkrvmqc4gcfdwos"><testcase classname="tests.test_user_integration.TestUserAPIIntegration" name="test_user_registration_flow" time="0.019"><failure message="ValueError: Database not configured">self = &lt;tests.test_user_integration.TestUserAPIIntegration object at 0x7ffb521f3020&gt;
+mock_get_db = &lt;MagicMock name='get_db' id='140717389366816'&gt;
+
+    @patch('subscription.router.users.get_db')
+    def test_user_registration_flow(self, mock_get_db):
+        """Test complete user registration flow with mocked database"""
+        # Mock database session
+        mock_db = MagicMock()
+        mock_get_db.return_value.__enter__.return_value = mock_db
+        mock_get_db.return_value.__exit__.return_value = None
+    
+        # Mock that user doesn't exist yet
+        mock_db.query.return_value.filter.return_value.first.return_value = None
+    
+        user_data = {
+            "username": "testuser123",
+            "email": "test@example.com",
+            "first_name": "Test",
+            "last_name": "User",
+            "password1": "TestPass123!",
+            "password2": "TestPass123!"
+        }
+    
+&gt;       response = client.post("/users/register", json=user_data)
+
+tests/test_user_integration.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/starlette/testclient.py:597: in post
+    return super().post(
+.venv/lib/python3.12/site-packages/httpx/_client.py:1157: in post
+    return self.request(
+.venv/lib/python3.12/site-packages/starlette/testclient.py:488: in request
+    return super().request(
+.venv/lib/python3.12/site-packages/httpx/_client.py:837: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+.venv/lib/python3.12/site-packages/httpx/_client.py:926: in send
+    response = self._send_handling_auth(
+.venv/lib/python3.12/site-packages/httpx/_client.py:954: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv/lib/python3.12/site-packages/httpx/_client.py:991: in _send_handling_redirects
+    response = self._send_single_request(request)
+.venv/lib/python3.12/site-packages/httpx/_client.py:1027: in _send_single_request
+    response = transport.handle_request(request)
+.venv/lib/python3.12/site-packages/starlette/testclient.py:381: in handle_request
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/testclient.py:378: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+/usr/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+/usr/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+.venv/lib/python3.12/site-packages/fastapi/applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/applications.py:113: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:187: in __call__
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:735: in app
+    await route.handle(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:288: in handle
+    await self.app(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:73: in app
+    response = await f(request)
+.venv/lib/python3.12/site-packages/fastapi/routing.py:291: in app
+    solved_result = await solve_dependencies(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:605: in solve_dependencies
+    solved = await solve_generator(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:531: in solve_generator
+    return await stack.enter_async_context(cm)
+/usr/lib/python3.12/contextlib.py:659: in enter_async_context
+    result = await _enter(cm)
+/usr/lib/python3.12/contextlib.py:210: in __aenter__
+    return await anext(self.gen)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cm = &lt;contextlib._GeneratorContextManager object at 0x7ffb520bcad0&gt;
+
+    @asynccontextmanager
+    async def contextmanager_in_threadpool(
+        cm: ContextManager[_T],
+    ) -&gt; AsyncGenerator[_T, None]:
+        # blocking __exit__ from running waiting on a free thread
+        # can create race conditions/deadlocks if the context manager itself
+        # has its own internal pool (e.g. a database connection pool)
+        # to avoid this we let __exit__ run without a capacity limit
+        # since we're creating a new limiter for each call, any non-zero limit
+        # works (1 is arbitrary)
+        exit_limiter = CapacityLimiter(1)
+        try:
+            yield await run_in_threadpool(cm.__enter__)
+        except Exception as e:
+            ok = bool(
+                await anyio.to_thread.run_sync(
+                    cm.__exit__, type(e), e, None, limiter=exit_limiter
+                )
+            )
+            if not ok:
+&gt;               raise e
+E               ValueError: Database not configured
+
+.venv/lib/python3.12/site-packages/fastapi/concurrency.py:35: ValueError</failure></testcase><testcase classname="tests.test_user_integration.TestUserAPIIntegration" name="test_password_validation_in_schema" time="0.004"><failure message="ValueError: Database not configured">self = &lt;tests.test_user_integration.TestUserAPIIntegration object at 0x7ffb5201c050&gt;
+
+    def test_password_validation_in_schema(self):
+        """Test that password validation works at schema level"""
+        user_data = {
+            "username": "testuser123",
+            "email": "test@example.com",
+            "first_name": "Test",
+            "last_name": "User",
+            "password1": "weak",  # Weak password
+            "password2": "weak"
+        }
+    
+&gt;       response = client.post("/users/register", json=user_data)
+
+tests/test_user_integration.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/starlette/testclient.py:597: in post
+    return super().post(
+.venv/lib/python3.12/site-packages/httpx/_client.py:1157: in post
+    return self.request(
+.venv/lib/python3.12/site-packages/starlette/testclient.py:488: in request
+    return super().request(
+.venv/lib/python3.12/site-packages/httpx/_client.py:837: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+.venv/lib/python3.12/site-packages/httpx/_client.py:926: in send
+    response = self._send_handling_auth(
+.venv/lib/python3.12/site-packages/httpx/_client.py:954: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv/lib/python3.12/site-packages/httpx/_client.py:991: in _send_handling_redirects
+    response = self._send_single_request(request)
+.venv/lib/python3.12/site-packages/httpx/_client.py:1027: in _send_single_request
+    response = transport.handle_request(request)
+.venv/lib/python3.12/site-packages/starlette/testclient.py:381: in handle_request
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/testclient.py:378: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+/usr/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+/usr/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+.venv/lib/python3.12/site-packages/fastapi/applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/applications.py:113: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:187: in __call__
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:735: in app
+    await route.handle(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:288: in handle
+    await self.app(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:73: in app
+    response = await f(request)
+.venv/lib/python3.12/site-packages/fastapi/routing.py:291: in app
+    solved_result = await solve_dependencies(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:605: in solve_dependencies
+    solved = await solve_generator(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:531: in solve_generator
+    return await stack.enter_async_context(cm)
+/usr/lib/python3.12/contextlib.py:659: in enter_async_context
+    result = await _enter(cm)
+/usr/lib/python3.12/contextlib.py:210: in __aenter__
+    return await anext(self.gen)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cm = &lt;contextlib._GeneratorContextManager object at 0x7ffb50ad5400&gt;
+
+    @asynccontextmanager
+    async def contextmanager_in_threadpool(
+        cm: ContextManager[_T],
+    ) -&gt; AsyncGenerator[_T, None]:
+        # blocking __exit__ from running waiting on a free thread
+        # can create race conditions/deadlocks if the context manager itself
+        # has its own internal pool (e.g. a database connection pool)
+        # to avoid this we let __exit__ run without a capacity limit
+        # since we're creating a new limiter for each call, any non-zero limit
+        # works (1 is arbitrary)
+        exit_limiter = CapacityLimiter(1)
+        try:
+            yield await run_in_threadpool(cm.__enter__)
+        except Exception as e:
+            ok = bool(
+                await anyio.to_thread.run_sync(
+                    cm.__exit__, type(e), e, None, limiter=exit_limiter
+                )
+            )
+            if not ok:
+&gt;               raise e
+E               ValueError: Database not configured
+
+.venv/lib/python3.12/site-packages/fastapi/concurrency.py:35: ValueError</failure></testcase><testcase classname="tests.test_user_integration.TestUserAPIIntegration" name="test_password_mismatch_validation" time="0.004"><failure message="ValueError: Database not configured">self = &lt;tests.test_user_integration.TestUserAPIIntegration object at 0x7ffb5201c140&gt;
+
+    def test_password_mismatch_validation(self):
+        """Test password mismatch validation"""
+        user_data = {
+            "username": "testuser123",
+            "email": "test@example.com",
+            "first_name": "Test",
+            "last_name": "User",
+            "password1": "TestPass123!",
+            "password2": "DifferentPass123!"  # Different password
+        }
+    
+&gt;       response = client.post("/users/register", json=user_data)
+
+tests/test_user_integration.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/starlette/testclient.py:597: in post
+    return super().post(
+.venv/lib/python3.12/site-packages/httpx/_client.py:1157: in post
+    return self.request(
+.venv/lib/python3.12/site-packages/starlette/testclient.py:488: in request
+    return super().request(
+.venv/lib/python3.12/site-packages/httpx/_client.py:837: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+.venv/lib/python3.12/site-packages/httpx/_client.py:926: in send
+    response = self._send_handling_auth(
+.venv/lib/python3.12/site-packages/httpx/_client.py:954: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv/lib/python3.12/site-packages/httpx/_client.py:991: in _send_handling_redirects
+    response = self._send_single_request(request)
+.venv/lib/python3.12/site-packages/httpx/_client.py:1027: in _send_single_request
+    response = transport.handle_request(request)
+.venv/lib/python3.12/site-packages/starlette/testclient.py:381: in handle_request
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/testclient.py:378: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+/usr/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+/usr/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+.venv/lib/python3.12/site-packages/fastapi/applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/applications.py:113: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:187: in __call__
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:735: in app
+    await route.handle(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:288: in handle
+    await self.app(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:73: in app
+    response = await f(request)
+.venv/lib/python3.12/site-packages/fastapi/routing.py:291: in app
+    solved_result = await solve_dependencies(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:605: in solve_dependencies
+    solved = await solve_generator(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:531: in solve_generator
+    return await stack.enter_async_context(cm)
+/usr/lib/python3.12/contextlib.py:659: in enter_async_context
+    result = await _enter(cm)
+/usr/lib/python3.12/contextlib.py:210: in __aenter__
+    return await anext(self.gen)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cm = &lt;contextlib._GeneratorContextManager object at 0x7ffb50a20590&gt;
+
+    @asynccontextmanager
+    async def contextmanager_in_threadpool(
+        cm: ContextManager[_T],
+    ) -&gt; AsyncGenerator[_T, None]:
+        # blocking __exit__ from running waiting on a free thread
+        # can create race conditions/deadlocks if the context manager itself
+        # has its own internal pool (e.g. a database connection pool)
+        # to avoid this we let __exit__ run without a capacity limit
+        # since we're creating a new limiter for each call, any non-zero limit
+        # works (1 is arbitrary)
+        exit_limiter = CapacityLimiter(1)
+        try:
+            yield await run_in_threadpool(cm.__enter__)
+        except Exception as e:
+            ok = bool(
+                await anyio.to_thread.run_sync(
+                    cm.__exit__, type(e), e, None, limiter=exit_limiter
+                )
+            )
+            if not ok:
+&gt;               raise e
+E               ValueError: Database not configured
+
+.venv/lib/python3.12/site-packages/fastapi/concurrency.py:35: ValueError</failure></testcase><testcase classname="tests.test_user_integration.TestUserAPIIntegration" name="test_username_validation" time="0.004"><failure message="ValueError: Database not configured">self = &lt;tests.test_user_integration.TestUserAPIIntegration object at 0x7ffb5201c260&gt;
+
+    def test_username_validation(self):
+        """Test username validation (spaces removed)"""
+        user_data = {
+            "username": "test user 123",  # Username with spaces
+            "email": "test@example.com",
+            "first_name": "Test",
+            "last_name": "User",
+            "password1": "TestPass123!",
+            "password2": "TestPass123!"
+        }
+    
+        # The validation should work but spaces should be removed
+        # This would be validated against the database, but we can check schema validation
+&gt;       response = client.post("/users/register", json=user_data)
+
+tests/test_user_integration.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/starlette/testclient.py:597: in post
+    return super().post(
+.venv/lib/python3.12/site-packages/httpx/_client.py:1157: in post
+    return self.request(
+.venv/lib/python3.12/site-packages/starlette/testclient.py:488: in request
+    return super().request(
+.venv/lib/python3.12/site-packages/httpx/_client.py:837: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+.venv/lib/python3.12/site-packages/httpx/_client.py:926: in send
+    response = self._send_handling_auth(
+.venv/lib/python3.12/site-packages/httpx/_client.py:954: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv/lib/python3.12/site-packages/httpx/_client.py:991: in _send_handling_redirects
+    response = self._send_single_request(request)
+.venv/lib/python3.12/site-packages/httpx/_client.py:1027: in _send_single_request
+    response = transport.handle_request(request)
+.venv/lib/python3.12/site-packages/starlette/testclient.py:381: in handle_request
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/testclient.py:378: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+/usr/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+/usr/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+.venv/lib/python3.12/site-packages/fastapi/applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/applications.py:113: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:187: in __call__
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:735: in app
+    await route.handle(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:288: in handle
+    await self.app(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:73: in app
+    response = await f(request)
+.venv/lib/python3.12/site-packages/fastapi/routing.py:291: in app
+    solved_result = await solve_dependencies(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:605: in solve_dependencies
+    solved = await solve_generator(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:531: in solve_generator
+    return await stack.enter_async_context(cm)
+/usr/lib/python3.12/contextlib.py:659: in enter_async_context
+    result = await _enter(cm)
+/usr/lib/python3.12/contextlib.py:210: in __aenter__
+    return await anext(self.gen)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cm = &lt;contextlib._GeneratorContextManager object at 0x7ffb50afaba0&gt;
+
+    @asynccontextmanager
+    async def contextmanager_in_threadpool(
+        cm: ContextManager[_T],
+    ) -&gt; AsyncGenerator[_T, None]:
+        # blocking __exit__ from running waiting on a free thread
+        # can create race conditions/deadlocks if the context manager itself
+        # has its own internal pool (e.g. a database connection pool)
+        # to avoid this we let __exit__ run without a capacity limit
+        # since we're creating a new limiter for each call, any non-zero limit
+        # works (1 is arbitrary)
+        exit_limiter = CapacityLimiter(1)
+        try:
+            yield await run_in_threadpool(cm.__enter__)
+        except Exception as e:
+            ok = bool(
+                await anyio.to_thread.run_sync(
+                    cm.__exit__, type(e), e, None, limiter=exit_limiter
+                )
+            )
+            if not ok:
+&gt;               raise e
+E               ValueError: Database not configured
+
+.venv/lib/python3.12/site-packages/fastapi/concurrency.py:35: ValueError</failure></testcase><testcase classname="tests.test_user_integration.TestUserAPIIntegration" name="test_email_validation" time="0.004"><failure message="ValueError: Database not configured">self = &lt;tests.test_user_integration.TestUserAPIIntegration object at 0x7ffb5201c380&gt;
+
+    def test_email_validation(self):
+        """Test email validation"""
+        user_data = {
+            "username": "testuser123",
+            "email": "invalid-email",  # Invalid email
+            "first_name": "Test",
+            "last_name": "User",
+            "password1": "TestPass123!",
+            "password2": "TestPass123!"
+        }
+    
+&gt;       response = client.post("/users/register", json=user_data)
+
+tests/test_user_integration.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/starlette/testclient.py:597: in post
+    return super().post(
+.venv/lib/python3.12/site-packages/httpx/_client.py:1157: in post
+    return self.request(
+.venv/lib/python3.12/site-packages/starlette/testclient.py:488: in request
+    return super().request(
+.venv/lib/python3.12/site-packages/httpx/_client.py:837: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+.venv/lib/python3.12/site-packages/httpx/_client.py:926: in send
+    response = self._send_handling_auth(
+.venv/lib/python3.12/site-packages/httpx/_client.py:954: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv/lib/python3.12/site-packages/httpx/_client.py:991: in _send_handling_redirects
+    response = self._send_single_request(request)
+.venv/lib/python3.12/site-packages/httpx/_client.py:1027: in _send_single_request
+    response = transport.handle_request(request)
+.venv/lib/python3.12/site-packages/starlette/testclient.py:381: in handle_request
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/testclient.py:378: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:290: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+/usr/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+/usr/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+.venv/lib/python3.12/site-packages/anyio/from_thread.py:221: in _call_func
+    retval = await retval_or_awaitable
+.venv/lib/python3.12/site-packages/fastapi/applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/applications.py:113: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:187: in __call__
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/middleware/errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:735: in app
+    await route.handle(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:288: in handle
+    await self.app(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:62: in wrapped_app
+    raise exc
+.venv/lib/python3.12/site-packages/starlette/_exception_handler.py:51: in wrapped_app
+    await app(scope, receive, sender)
+.venv/lib/python3.12/site-packages/starlette/routing.py:73: in app
+    response = await f(request)
+.venv/lib/python3.12/site-packages/fastapi/routing.py:291: in app
+    solved_result = await solve_dependencies(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:605: in solve_dependencies
+    solved = await solve_generator(
+.venv/lib/python3.12/site-packages/fastapi/dependencies/utils.py:531: in solve_generator
+    return await stack.enter_async_context(cm)
+/usr/lib/python3.12/contextlib.py:659: in enter_async_context
+    result = await _enter(cm)
+/usr/lib/python3.12/contextlib.py:210: in __aenter__
+    return await anext(self.gen)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cm = &lt;contextlib._GeneratorContextManager object at 0x7ffb50a082c0&gt;
+
+    @asynccontextmanager
+    async def contextmanager_in_threadpool(
+        cm: ContextManager[_T],
+    ) -&gt; AsyncGenerator[_T, None]:
+        # blocking __exit__ from running waiting on a free thread
+        # can create race conditions/deadlocks if the context manager itself
+        # has its own internal pool (e.g. a database connection pool)
+        # to avoid this we let __exit__ run without a capacity limit
+        # since we're creating a new limiter for each call, any non-zero limit
+        # works (1 is arbitrary)
+        exit_limiter = CapacityLimiter(1)
+        try:
+            yield await run_in_threadpool(cm.__enter__)
+        except Exception as e:
+            ok = bool(
+                await anyio.to_thread.run_sync(
+                    cm.__exit__, type(e), e, None, limiter=exit_limiter
+                )
+            )
+            if not ok:
+&gt;               raise e
+E               ValueError: Database not configured
+
+.venv/lib/python3.12/site-packages/fastapi/concurrency.py:35: ValueError</failure></testcase><testcase classname="tests.test_user_integration.TestUserAPIIntegration" name="test_api_documentation_includes_user_endpoints" time="0.075" /><testcase classname="tests.test_user_integration.TestUserAPIIntegration" name="test_unauthorized_access_properly_handled" time="0.010" /><testcase classname="tests.test_user_integration.TestUserAPIIntegration" name="test_app_title_and_description" time="0.002" /></testsuite></testsuites>
