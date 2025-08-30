@@ -22,7 +22,6 @@ export function AvatarRow({
     lg: "h-20 w-20",
   };
 
-  // Example usage with images from public/images
   const defaultAvatars = [
     {
       src: "/images/pic-1.jpg",
