@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 // Common types and interfaces for the application
 
 export interface BaseComponentProps {

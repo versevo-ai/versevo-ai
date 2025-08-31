@@ -1,5 +1,5 @@
 import { type TeamMember } from '@/lib/types';
-import { SambitImg, ParthibImg, MaharshiImg, AriyanImg, AvikImg } from '@public/team';
+import { SambitImg, ParthibImg, MaharshiImg, AriyanImg, AvikImg } from '@/public/team';
 
 export const TEAM_MEMBERS: readonly TeamMember[] = [
   {
