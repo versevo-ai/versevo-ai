@@ -37,10 +37,13 @@ const metadataConfig: MetadataConfig = {
     'Versevo AI GitHub',
     'versevo.ai'
   ],
-  ogImage: '/Logo.svg',
+  ogImage: '/shared/Logo.svg',
 };
 
 export const metadata: Metadata = {
+
+  metadataBase: new URL('https://landing.versevo.xyz/'),
+
   title: {
     default: metadataConfig.title,
     template: `%s | ${metadataConfig.title}`,
