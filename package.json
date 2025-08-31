@@ -4,9 +4,13 @@
   "license": "MIT",
   "scripts": {
     "dev:subscription": "cd ./api/subscription && uvicorn subscription.main:app --reload",
-    "setup:subscription": "py -3.12 -m venv venv && . venv/bin/activate && cd ./api && pip install poetry && poetry install"
+    "setup:subscription": ". venv/bin/activate",
+    "web:dev": "cd ./web && pnpm run dev"
   },
   "private": true,
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.12",
+    "typescript": "^5.9.2"
+  }
 }

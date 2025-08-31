@@ -1,9 +1,10 @@
-import AuroraBackgroundDemo from "../../components/example/aurora-background-demo";
+
+import Hero from "@/components/ui/hero";
 
 function Index(): React.JSX.Element {
   return (
     <>
-      <AuroraBackgroundDemo />
+      <Hero />
     </>
   )
 }
