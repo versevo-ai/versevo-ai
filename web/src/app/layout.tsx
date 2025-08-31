@@ -11,7 +11,32 @@ const notoSansLao = Noto_Sans_Lao({
 const metadataConfig: MetadataConfig = {
   title: COMPANY_INFO.NAME,
   description: COMPANY_INFO.TAGLINE,
-  keywords: ['VersevoAI', 'Audio AI', 'AI Platform', 'Audio Processing', 'Machine Learning', 'Translation'],
+  keywords: [
+    'VersevoAI',
+    'Audio AI',
+    'AI Platform',
+    'Audio Processing',
+    'Machine Learning',
+    'Translation',
+    'Natural Language Processing',
+    'Versveso',
+    'Versevo.com',
+    'Transcription',
+    'Speech Recognition',
+    'Transformer',
+    'Audio Generation',
+    'Voice Synthesis',
+    'Expressive Text-to-Speech',
+    'Expressive Translation',
+    'Emotion Recognition',
+    'AI Ethics',
+    'AI Governance',
+    'Open Source',
+    'Security',
+    'Alternative',
+    'Versevo AI GitHub',
+    'versevo.ai'
+  ],
   ogImage: '/Logo.svg',
 };
 
