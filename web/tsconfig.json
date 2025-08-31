@@ -17,6 +17,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
     "plugins": [
       {
         "name": "next"
@@ -29,11 +33,17 @@
       "@public/*": [
         "./public/*"
       ],
-      "@components/*": [
+      "@/components/*": [
         "./src/components/*"
       ],
-      "@lib/*": [
+      "@/lib/*": [
         "./src/lib/*"
+      ],
+      "@/types/*": [
+        "./src/lib/types/*"
+      ],
+      "@/constants/*": [
+        "./src/lib/constants/*"
       ]
     }
   },

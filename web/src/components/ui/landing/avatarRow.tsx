@@ -1,86 +1,54 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
-import { motion } from "framer-motion";
-import { SambitImg, ParthibImg, MaharshiImg, AriyanImg, AvikImg } from "@public/team";
+'use client';
 
-interface AvatarRowProps {
-  avatars?: Array<{
-    src?: string;
-    alt: string;
-    fallback: string;
-  }>;
-  size?: "sm" | "md" | "lg";
-  className?: string;
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
+import { type AvatarProps, type TeamMember } from '@/lib/types';
+import { TEAM_MEMBERS, AVATAR_SIZES, ANIMATION_DELAYS } from '@/lib/constants';
+import { scaleIn, staggerContainer } from '@/lib/utils/animations';
+import { cn } from '@/lib/utils';
+
+interface AvatarRowProps extends AvatarProps {
+  members?: readonly TeamMember[];
 }
 
-export function AvatarRow({
-  avatars,
-  size = "md",
-  className = "",
-}: AvatarRowProps) {
-  const sizeClasses = {
-    sm: "h-12 w-12",
-    md: "h-16 w-16",
-    lg: "h-20 w-20",
-  };
-
-  const defaultAvatars = [
-    {
-      src: SambitImg,
-      alt: "Sambit Chakraborty",
-      fallback: "SG",
-    },
-    {
-      src: ParthibImg,
-      alt: "Parthib Kumar Deb",
-      fallback: "PKD",
-    },
-    {
-      src: MaharshiImg,
-      alt: "Maharshi Mahanti",
-      fallback: "MM",
-    },
-    {
-      src: AriyanImg,
-      alt: "Ariyan Pandey",
-      fallback: "AP",
-    },
-        {
-      src: AvikImg,
-      alt: "Avik Mukherjee",
-      fallback: "AM",
-    }
-  ];
-
-  const avatarsToShow =
-    avatars && avatars.length > 0 ? avatars : defaultAvatars;
-
+export const AvatarRow: React.FC<AvatarRowProps> = ({
+  members = TEAM_MEMBERS,
+  size = 'md',
+  className,
+}) => {
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
-      {[...avatarsToShow].map((avatar, index) => (
+    <motion.div
+      variants={staggerContainer(ANIMATION_DELAYS.AVATAR_STAGGER)}
+      initial="initial"
+      animate="animate"
+      className={cn('flex items-center gap-3', className)}
+    >
+      {members.map((member, index) => (
         <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 0.8, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{
-            duration: 0.3,
-            delay: index * 0.1,
-            ease: "easeOut"
-          }}
+          key={`${member.name}-${index}`}
+          variants={scaleIn(index * ANIMATION_DELAYS.AVATAR_STAGGER)}
         >
           <Avatar
-            className={`${sizeClasses[size]} border-3 border-white shadow-xl ring-2 ring-blue-100/50 hover:scale-105 transition-transform duration-200`}
+            className={cn(
+              AVATAR_SIZES[size],
+              'border-3 border-white shadow-xl ring-2 ring-blue-100/50',
+              'hover:scale-105 transition-transform duration-200'
+            )}
           >
             <AvatarImage
-              src={avatar.src || "/placeholder.svg"}
-              alt={avatar.alt}
+              src={member.image}
+              alt={member.alt}
               className="object-cover object-center select-none"
             />
             <AvatarFallback className="bg-gradient-to-br from-blue-400 to-blue-600 text-white font-semibold text-sm">
-              {avatar.fallback}
+              {member.fallback}
             </AvatarFallback>
           </Avatar>
         </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
-}
+};
+
+export default AvatarRow;

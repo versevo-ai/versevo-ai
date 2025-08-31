@@ -1,58 +1,64 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import {Noto_Sans_Lao} from "next/font/google";
+import type { Metadata } from 'next';
+import { Noto_Sans_Lao } from 'next/font/google';
+import './global.css';
+import { type MetadataConfig } from '@/lib/types';
+import { COMPANY_INFO } from '@/lib/constants';
 
 const notoSansLao = Noto_Sans_Lao({
-  subsets: ["latin"],
-})
+  subsets: ['latin'],
+});
 
+const metadataConfig: MetadataConfig = {
+  title: COMPANY_INFO.NAME,
+  description: COMPANY_INFO.TAGLINE,
+  keywords: ['VersevoAI', 'Audio AI', 'AI Platform', 'Audio Processing', 'Machine Learning', 'Translation'],
+  ogImage: '/Logo.svg',
+};
 
 export const metadata: Metadata = {
   title: {
-    default: "VersevoAI",
-    template: "%s | VersevoAI",
+    default: metadataConfig.title,
+    template: `%s | ${metadataConfig.title}`,
   },
-  description: "The Ultimate Audio AI Platform",
-  keywords: ["VersevoAI", "Audio AI", "AI Platform", "Audio Processing", "Machine Learning", "Translation"],
-  icons:{
-    icon: "/Logo.svg",
+  description: metadataConfig.description,
+  keywords: metadataConfig.keywords,
+  icons: {
+    icon: './favicon.ico',
   },
-
-  openGraph:{
-    title: "VersevoAI",
-    description: "The Ultimate Audio AI Platform",
-    url: "https://versevo.ai",
-    type: "website",
-    locale: "en_US",
-    siteName: "VersevoAI",
+  openGraph: {
+    title: metadataConfig.title,
+    description: metadataConfig.description,
+    url: COMPANY_INFO.URL,
+    type: 'website',
+    locale: 'en_US',
+    siteName: metadataConfig.title,
     images: [
       {
-        url: "/Logo.svg",
+        url: metadataConfig.ogImage,
         width: 800,
         height: 600,
       },
     ],
   },
-
   twitter: {
-    card: "summary_large_image",
-    title: "VersevoAI",
-    description: "The Ultimate Audio AI Platform",
-    images: ["/Logo.svg"],
+    card: 'summary_large_image',
+    title: metadataConfig.title,
+    description: metadataConfig.description,
+    images: [metadataConfig.ogImage],
   },
   appleWebApp: {
-    title: "VersevoAI",
-    statusBarStyle: "default",
+    title: metadataConfig.title,
+    statusBarStyle: 'default',
     capable: true,
-    startupImage: "/Logo.svg",
-  }
+    startupImage: metadataConfig.ogImage,
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={notoSansLao.className}>
@@ -60,4 +66,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
