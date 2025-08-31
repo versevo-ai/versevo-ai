@@ -55,7 +55,7 @@ export function AvatarRow({
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      {avatarsToShow.reverse().map((avatar, index) => (
+      {[...avatarsToShow].reverse().map((avatar, index) => (
         <motion.div
           key={index}
           initial={{ opacity: 0, scale: 0.8, y: 10 }}
