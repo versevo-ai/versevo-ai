@@ -1,5 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
 import { motion } from "framer-motion";
+import { SambitImg, ParthibImg, MaharshiImg, AriyanImg, AvikImg } from "@public/team";
 
 interface AvatarRowProps {
   avatars?: Array<{
@@ -24,30 +25,30 @@ export function AvatarRow({
 
   const defaultAvatars = [
     {
-      src: "/images/pic-1.jpg",
-      alt: "Avik Mukherjee",
-      fallback: "AM",
-    },
-    {
-      src: "/images/pic-2.jpg",
-      alt: "Sambit Ghosh",
+      src: SambitImg,
+      alt: "Sambit Chakraborty",
       fallback: "SG",
     },
     {
-      src: "/images/pic-3.jpg",
+      src: ParthibImg,
       alt: "Parthib Kumar Deb",
       fallback: "PKD",
     },
     {
-      src: "/images/pic-4.jpg",
-      alt: "User 4",
-      fallback: "U4",
+      src: MaharshiImg,
+      alt: "Maharshi Mahanti",
+      fallback: "MM",
     },
     {
-      src: "/images/pic-5.png",
-      alt: "User 5",
-      fallback: "U5",
+      src: AriyanImg,
+      alt: "Ariyan Pandey",
+      fallback: "AP",
     },
+        {
+      src: AvikImg,
+      alt: "Avik Mukherjee",
+      fallback: "AM",
+    }
   ];
 
   const avatarsToShow =
@@ -55,7 +56,7 @@ export function AvatarRow({
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      {[...avatarsToShow].reverse().map((avatar, index) => (
+      {[...avatarsToShow].map((avatar, index) => (
         <motion.div
           key={index}
           initial={{ opacity: 0, scale: 0.8, y: 10 }}
@@ -72,7 +73,7 @@ export function AvatarRow({
             <AvatarImage
               src={avatar.src || "/placeholder.svg"}
               alt={avatar.alt}
-              className="object-cover object-center"
+              className="object-cover object-center select-none"
             />
             <AvatarFallback className="bg-gradient-to-br from-blue-400 to-blue-600 text-white font-semibold text-sm">
               {avatar.fallback}

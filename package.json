@@ -8,6 +8,9 @@
     "web:dev": "cd ./web && pnpm run dev"
   },
   "private": true,
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.12",
+    "typescript": "^5.9.2"
+  }
 }
