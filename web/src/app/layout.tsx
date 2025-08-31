@@ -1,4 +1,4 @@
-import '@/styles/global.css';
+import './global.css';
 import type { Metadata } from 'next';
 import { Noto_Sans_Lao } from 'next/font/google';
 import { type MetadataConfig } from '@/lib/types';

@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --versevo-blue: #073E79;
+    --versevo-light-blue: #C6EDF9;
+    --versevo-nav-blue: #B2E2F0;
+  }
+}
+
+@layer components {
+  .versevo-container {
+    @apply absolute w-[1920px] h-[3538px] bg-[#C6EDF9];
+  }
+
+  .versevo-landing {
+    @apply relative w-[1920px] h-[1062px] bg-white;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #C6EDF9 98.54%), url(.png), #FFFFFF;
+  }
+
+  .versevo-nav {
+    @apply absolute w-[1790px] h-[100px] bg-[#B2E2F0] rounded-[25px];
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .versevo-logo {
+    @apply absolute w-[238px] h-[34px] flex items-center justify-center text-center;
+    font-family: 'Noto Sans Lao', sans-serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 149px;
+    color: #073E79;
+  }
+
+  .versevo-group-3 {
+    @apply absolute w-[46px] h-[55px];
+  }
+
+  .versevo-group-8 {
+    @apply absolute w-[1158px] h-[597px];
+  }
+
+  .versevo-group-9 {
+    @apply absolute w-[780px] h-[407px];
+  }
+
+  .versevo-hero-image {
+    @apply absolute w-[900px] h-[600px] rounded-[25px];
+    background: url(versevoAI-language-confident.png);
+  }
+}
+
+@layer utilities {
+  .text-versevo-blue {
+    color: var(--versevo-blue);
+  }
+
+  .bg-versevo-light {
+    background-color: var(--versevo-light-blue);
+  }
+
+  .bg-versevo-nav {
+    background-color: var(--versevo-nav-blue);
+  }
+
+  .shadow-versevo {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
