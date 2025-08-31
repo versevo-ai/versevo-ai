@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/common/Navbar';
 import { HeroBackground } from '@/public/hero';
-import { AvatarRow } from '@/components/ui/landing/AvatarRow';
+import { AvatarRow } from '@/components/ui/landing/avatarRow';
 import { type HeroProps } from '@/lib/types';
 import { COMPANY_INFO, ANIMATION_DELAYS } from '@/lib/constants';
 import { fadeInUp, fadeInDown } from '@/lib/utils/animations';

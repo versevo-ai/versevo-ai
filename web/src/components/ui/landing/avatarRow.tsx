@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { type AvatarProps, type TeamMember } from '@/lib/types';
 import { TEAM_MEMBERS, AVATAR_SIZES, ANIMATION_DELAYS } from '@/lib/constants';
 import { scaleIn, staggerContainer } from '@/lib/utils/animations';
