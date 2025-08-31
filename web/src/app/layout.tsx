@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | VersevoAI",
   },
   description: "The Ultimate Audio AI Platform",
-  keywords: ["VersevoAI", "Audio AI", "AI Platform", "Audio Processing", "Machine Learning"],
+  keywords: ["VersevoAI", "Audio AI", "AI Platform", "Audio Processing", "Machine Learning", "Translation"],
   icons:{
     icon: "/Logo.svg",
   },
