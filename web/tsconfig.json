@@ -30,7 +30,7 @@
       "@/*": [
         "./*"
       ],
-      "@public/*": [
+      "@/public/*": [
         "./public/*"
       ],
       "@/components/*": [
@@ -44,6 +44,9 @@
       ],
       "@/constants/*": [
         "./src/lib/constants/*"
+      ],
+      "@/styles/*": [
+        "./src/styles/*"
       ]
     }
   },

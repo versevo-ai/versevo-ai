@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
 import { type AvatarProps, type TeamMember } from '@/lib/types';
 import { TEAM_MEMBERS, AVATAR_SIZES, ANIMATION_DELAYS } from '@/lib/constants';
 import { scaleIn, staggerContainer } from '@/lib/utils/animations';
-import { cn } from '@/lib/utils';
+import { cn } from '@/src/lib/utils';
 
 interface AvatarRowProps extends AvatarProps {
   members?: readonly TeamMember[];

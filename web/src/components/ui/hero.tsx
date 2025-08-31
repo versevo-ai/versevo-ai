@@ -3,20 +3,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/common/Navbar';
+import { HeroBackground } from '@/public/hero';
 import { AvatarRow } from '@/components/ui/landing/AvatarRow';
 import { type HeroProps } from '@/lib/types';
 import { COMPANY_INFO, ANIMATION_DELAYS } from '@/lib/constants';
 import { fadeInUp, fadeInDown } from '@/lib/utils/animations';
-import { cn } from '@/lib/utils';
+import { cn } from '@/src/lib/utils';
 
 const Hero: React.FC<HeroProps> = ({ className, children }) => {
   return (
-    <div 
+    <div
       className={cn(
         'h-screen overflow-y-auto w-full flex flex-col',
-        'bg-gradient-to-br from-blue-500 via-blue-300 to-cyan-200',
         className
       )}
+      style={{
+        backgroundImage: `url(${HeroBackground.src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
       <motion.div
         variants={fadeInDown()}

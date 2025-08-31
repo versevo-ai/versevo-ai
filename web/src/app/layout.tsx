@@ -1,6 +1,6 @@
+import '@/styles/global.css';
 import type { Metadata } from 'next';
 import { Noto_Sans_Lao } from 'next/font/google';
-import './global.css';
 import { type MetadataConfig } from '@/lib/types';
 import { COMPANY_INFO } from '@/lib/constants';
 
