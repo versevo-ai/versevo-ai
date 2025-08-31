@@ -9,6 +9,13 @@
     --versevo-blue: #073E79;
     --versevo-light-blue: #C6EDF9;
     --versevo-nav-blue: #B2E2F0;
+
+    /* Rainbow variables for cursor */
+    --color-1: oklch(0.7 0.15 0);
+    --color-2: oklch(0.7 0.15 60);
+    --color-3: oklch(0.7 0.15 120);
+    --color-4: oklch(0.7 0.15 180);
+    --color-5: oklch(0.7 0.15 240);
   }
 }
 
@@ -70,4 +77,73 @@
   .shadow-versevo {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
+}
+
+/* Rainbow animation for cursor */
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 200% 50%;
+  }
+  75% {
+    background-position: 300% 50%;
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
+
+@keyframes rainbow-glow {
+  0% {
+    background-position: 0% 50%;
+    filter: blur(4px) brightness(1);
+  }
+  33% {
+    background-position: 100% 50%;
+    filter: blur(6px) brightness(1.2);
+  }
+  66% {
+    background-position: 200% 50%;
+    filter: blur(8px) brightness(1.4);
+  }
+  100% {
+    background-position: 300% 50%;
+    filter: blur(4px) brightness(1);
+  }
+}
+
+@keyframes rainbow-pulse {
+  0% {
+    background-position: 0% 50%;
+    transform: scale(0.5);
+    opacity: 0.2;
+  }
+  50% {
+    background-position: 150% 50%;
+    transform: scale(0.55);
+    opacity: 0.4;
+  }
+  100% {
+    background-position: 300% 50%;
+    transform: scale(0.5);
+    opacity: 0.2;
+  }
+}
+
+.animate-rainbow {
+  background-size: 400% 100%;
+  animation: rainbow 3s linear infinite;
+}
+
+.animate-rainbow-glow {
+  animation: rainbow-glow 4s ease-in-out infinite;
+}
+
+.animate-rainbow-pulse {
+  animation: rainbow-pulse 5s ease-in-out infinite;
 }

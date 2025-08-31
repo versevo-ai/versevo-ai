@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import React from 'react';
@@ -5,6 +6,7 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/common/Navbar';
 import { HeroBackground } from '@/public/hero';
 import { AvatarRow } from '@/components/ui/landing/avatarRow';
+import { Particles } from '@/components/ui/shared/particles';
 import { type HeroProps } from '@/lib/types';
 import { COMPANY_INFO, ANIMATION_DELAYS } from '@/lib/constants';
 import { fadeInUp, fadeInDown } from '@/lib/utils/animations';
@@ -41,7 +43,10 @@ const Hero: React.FC<HeroProps> = ({ className, children }) => {
             animate="animate"
             className="text-6xl text-[#073E79] mb-4"
           >
-            The <span className="text-[#073E79] font-bold">Ultimate</span>
+            The{' '}
+              <span className="text-[#073E79] font-bold">
+                Ultimate
+              </span>
             <br />
             {COMPANY_INFO.TAGLINE.split(' ').slice(-3).join(' ')}
           </motion.h1>
