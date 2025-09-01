@@ -7,30 +7,35 @@ export const TEAM_MEMBERS: readonly TeamMember[] = [
     image: SambitImg,
     alt: 'Sambit Chakraborty',
     fallback: 'SG',
+    gitHubProfile: 'Sambit003',
   },
   {
     name: 'Parthib Kumar Deb',
     image: ParthibImg,
     alt: 'Parthib Kumar Deb',
     fallback: 'PKD',
+    gitHubProfile: 'PARTHIB-DEB',
   },
   {
     name: 'Maharshi Mahanti',
     image: MaharshiImg,
     alt: 'Maharshi Mahanti',
     fallback: 'MM',
+    gitHubProfile: 'Esoteric-Coder',
   },
   {
     name: 'Ariyan Pandey',
     image: AriyanImg,
     alt: 'Ariyan Pandey',
     fallback: 'AP',
+    gitHubProfile: 'Ariyanandey',
   },
   {
     name: 'Avik Mukherjee',
     image: AvikImg,
     alt: 'Avik Mukherjee',
     fallback: 'AM',
+    gitHubProfile: 'Avik-creator',
   },
 ] as const;
 
