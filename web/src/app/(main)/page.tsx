@@ -1,6 +1,6 @@
 
 import Hero from "@/components/ui/hero";
-import { CustomCursor } from "@/src/components/ui/shared/customCursor";
+import { CustomCursor } from "@/components/ui/shared/customCursor";
 
 function Index(): React.JSX.Element {
   return (

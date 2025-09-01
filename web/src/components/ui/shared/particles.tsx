@@ -126,14 +126,17 @@ export const Particles: React.FC<ParticlesProps> = ({
       }
       window.removeEventListener("resize", handleResize);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [color]);
 
   useEffect(() => {
     onMouseMove();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mousePosition.x, mousePosition.y]);
 
   useEffect(() => {
     initCanvas();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
 
   const initCanvas = () => {
@@ -231,8 +234,7 @@ export const Particles: React.FC<ParticlesProps> = ({
 
   const drawParticles = () => {
     clearContext();
-    const particleCount = quantity;
-    for (let i = 0; i < particleCount; i++) {
+    for (let i = 0; i < quantity; i++) {
       const circle = circleParams();
       drawCircle(circle);
     }

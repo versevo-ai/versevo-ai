@@ -47,7 +47,7 @@ const Hero: React.FC<HeroProps> = ({ className, children }) => {
               <span className="relative text-[#073E79] font-bold inline-block z-10">
                 Ultimate
                 <Particles
-                  className="absolute inset-0 z-0"
+                  className="absolute inset-0 z-[-10]"
                   quantity={100}
                   ease={80}
                   color="black"
