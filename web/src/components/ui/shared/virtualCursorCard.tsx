@@ -14,7 +14,6 @@ import React, {
 } from "react";
 import { createPortal } from "react-dom";
 import { Placement } from "@floating-ui/react-dom";
-import styles from "./CursorCard.module.scss";
 
 type SpacingToken =
   | "0" | "1" | "2" | "4" | "6" | "8" | "12" | "16" | "20" | "24" | "32" | "40" | "48" | "56" | "64" | "80" | "96" | "128" | "160" | "192" | "224" | "256" | "320" | "384" | "448" | "512"
@@ -282,7 +281,7 @@ const VirtualCursorCard = forwardRef<HTMLDivElement, VirtualCursorCardProps>(
               left="0"
               pointerEvents="none"
               ref={cardRef}
-              className={`${styles.fadeIn} ${className || ""}`}
+              className={`fadeIn ${className || ""}`}
               style={{
                 isolation: "isolate",
                 transform: `translate(calc(${mousePosition.x}px ${placement.includes("left") ? "- 100%" : placement.includes("right") ? "" : "- 50%"}), calc(${mousePosition.y}px ${placement.includes("top") ? "- 100%" : placement.includes("bottom") ? "" : "- 50%"}))`,
