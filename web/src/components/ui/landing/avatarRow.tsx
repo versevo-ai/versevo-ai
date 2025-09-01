@@ -9,6 +9,7 @@ import { scaleIn, staggerContainer } from '@/lib/utils/animations';
 import { cn } from '@/src/lib/utils';
 import { VirtualCursorCard } from '@/src/components/ui/shared/virtualCursorCard';
 import { Card } from '@/src/components/ui/shared/Card';
+import Image from 'next/image';
 
 interface AvatarRowProps extends AvatarProps {
   members?: readonly TeamMember[];
@@ -78,13 +79,15 @@ export const AvatarRow: React.FC<AvatarRowProps> = ({
                       </a>
                     </div>
                   </div>
-                  <img
+                  <Image
                     src={`https://github.com/${member.gitHubProfile.split('/').pop()}.png`}
                     alt={`${member.name}'s GitHub profile picture`}
+                    width={100}
+                    height={100}
                     className="w-full h-auto mt-4 rounded-lg"
                   />
                   <p className="text-sm text-gray-600 mt-2">
-                    Fetching description from GitHub is not yet supported.
+
                   </p>
                 </div>
               </Card>

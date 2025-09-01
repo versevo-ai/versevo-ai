@@ -261,6 +261,20 @@ const VirtualCursorCard = forwardRef<HTMLDivElement, VirtualCursorCardProps>(
 
     return (
       <>
+        <style jsx>{`
+          .fadeIn {
+            animation: fadeIn 0.2s ease-in-out;
+          }
+
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+        `}</style>
         {trigger && (
           <Flex
             ref={triggerRef}

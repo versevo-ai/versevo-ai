@@ -28,7 +28,7 @@ export const TEAM_MEMBERS: readonly TeamMember[] = [
     image: AriyanImg,
     alt: 'Ariyan Pandey',
     fallback: 'AP',
-    gitHubProfile: 'Ariyanandey',
+    gitHubProfile: 'Ariyanpandey',
   },
   {
     name: 'Avik Mukherjee',
