@@ -44,8 +44,15 @@ const Hero: React.FC<HeroProps> = ({ className, children }) => {
             className="text-6xl text-[#073E79] mb-4"
           >
             The{' '}
-              <span className="text-[#073E79] font-bold">
+              <span className="relative text-[#073E79] font-bold inline-block z-10">
                 Ultimate
+                <Particles
+                  className="absolute inset-0 z-0"
+                  quantity={100}
+                  ease={80}
+                  color="black"
+                  refresh
+                />
               </span>
             <br />
             {COMPANY_INFO.TAGLINE.split(' ').slice(-3).join(' ')}
