@@ -7,10 +7,11 @@ import Navbar from '@/components/common/Navbar';
 import { HeroBackground } from '@/public/hero';
 import { AvatarRow } from '@/components/ui/landing/avatarRow';
 import { Particles } from '@/components/ui/shared/particles';
+import { ShinyTextBox } from './shared/shinyTextBox';
 import { type HeroProps } from '@/lib/types';
 import { COMPANY_INFO, ANIMATION_DELAYS } from '@/lib/constants';
 import { fadeInUp, fadeInDown } from '@/lib/utils/animations';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/lib/utils';
 
 const Hero: React.FC<HeroProps> = ({ className, children }) => {
   return (
@@ -37,6 +38,23 @@ const Hero: React.FC<HeroProps> = ({ className, children }) => {
 
       <div className="flex-grow flex items-center justify-center">
         <div className="max-w-3xl mx-auto py-16 px-4 text-center">
+          <motion.div
+            variants={fadeInUp(ANIMATION_DELAYS.HERO_TITLE)}
+            initial="initial"
+            animate="animate"
+          >
+            <div className="flex min-h-32 items-center justify-center">
+              <div
+                className={cn(
+                    "group rounded-full border border-[#073E79] bg-[#ade8f4] text-base text-white transition-all ease-in hover:bg-[#b0e0f0] shadow-[0_0_10px_rgba(21,101,239,0.7)] hover:shadow-[0_0_20px_rgba(31,101,250,1)]"
+                  )}
+                >
+                <ShinyTextBox className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-[#073E79] hover:duration-400">
+                  <span>🚀 Waitlist Coming Soon</span>
+                </ShinyTextBox>
+              </div>
+            </div>
+          </motion.div>
           <motion.h1
             variants={fadeInUp(ANIMATION_DELAYS.HERO_TITLE)}
             initial="initial"

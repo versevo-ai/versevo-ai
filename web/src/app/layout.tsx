@@ -1,4 +1,4 @@
-import './global.css';
+import './globals.css';
 import type { Metadata } from 'next';
 import { Noto_Sans_Lao } from 'next/font/google';
 import { type MetadataConfig } from '@/lib/types';
@@ -20,7 +20,7 @@ const metadataConfig: MetadataConfig = {
     'Translation',
     'Natural Language Processing',
     'Versveso',
-    'Versevo.com',
+    'Versevo dot ai',
     'Transcription',
     'Speech Recognition',
     'Transformer',
@@ -35,7 +35,9 @@ const metadataConfig: MetadataConfig = {
     'Security',
     'Alternative',
     'Versevo AI GitHub',
-    'versevo.ai'
+    'versevo.ai',
+    'versevo lab',
+    'versevo'
   ],
   ogImage: '/shared/Logo.svg',
 };
@@ -58,7 +60,7 @@ export const metadata: Metadata = {
   icons: {
     icon: './favicon.ico',
   },
-  
+
   openGraph: {
     title: metadataConfig.title,
     description: metadataConfig.description,
@@ -74,7 +76,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  
+
   twitter: {
     card: 'summary_large_image',
     title: metadataConfig.title,
