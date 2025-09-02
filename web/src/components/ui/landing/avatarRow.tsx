@@ -32,7 +32,7 @@ export const AvatarRow: React.FC<AvatarRowProps> = ({
           key={`${member.name}-${index}`}
           variants={scaleIn(index * ANIMATION_DELAYS.AVATAR_STAGGER)}
         >
-          <VirtualCursorCard
+          {/* <VirtualCursorCard
             placement="bottom-right"
             maxWidth={24}
             trigger={
@@ -92,7 +92,25 @@ export const AvatarRow: React.FC<AvatarRowProps> = ({
                 </div>
               </Card>
             }
-          />
+          /> */
+          <Avatar
+            className={cn(
+              AVATAR_SIZES[size],
+              'border-3 border-white shadow-xl ring-2 ring-blue-100/50',
+              'hover:scale-105 transition-transform duration-200'
+            )}
+          >
+            <AvatarImage
+              src={member.image}
+              alt={member.alt}
+              className="object-cover object-center select-none"
+            />
+            <AvatarFallback className="bg-gradient-to-br from-blue-400 to-blue-600 text-white font-semibold text-sm">
+              {member.fallback}
+            </AvatarFallback>
+          </Avatar>
+
+          }
         </motion.div>
       ))}
     </motion.div>

@@ -290,14 +290,14 @@ const VirtualCursorCard = forwardRef<HTMLDivElement, VirtualCursorCardProps>(
           createPortal(
             <Flex
               zIndex={10}
-              position="fixed"
+              position="relative"
               top="0"
               left="0"
-              pointerEvents="none"
+              pointerEvents="auto"
               ref={cardRef}
               className={`fadeIn ${className || ""}`}
               style={{
-                isolation: "isolate",
+                isolation: "auto",
                 transform: `translate(calc(${mousePosition.x}px ${placement.includes("left") ? "- 100%" : placement.includes("right") ? "" : "- 50%"}), calc(${mousePosition.y}px ${placement.includes("top") ? "- 100%" : placement.includes("bottom") ? "" : "- 50%"}))`,
                 ...style,
               }}
