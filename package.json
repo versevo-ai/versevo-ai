@@ -18,5 +18,6 @@
     "motion": "^12.23.12",
     "next-video": "^2.2.3",
     "sharp": "^0.34.3"
-  }
+  },
+  "packageManager": "pnpm@10.15.0+sha1.8e43a0b959a228ea479539575a66f5eafc89023a"
 }
