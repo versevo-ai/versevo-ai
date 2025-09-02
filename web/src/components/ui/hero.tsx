@@ -66,8 +66,8 @@ const Hero: React.FC<HeroProps> = ({ className, children }) => {
                 Ultimate
                 <Particles
                   className="absolute inset-0 z-[-10]"
-                  quantity={100}
-                  ease={80}
+                  quantity={200}
+                  ease={60}
                   color="black"
                   refresh
                 />
