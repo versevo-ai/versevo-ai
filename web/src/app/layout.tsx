@@ -1,4 +1,4 @@
-import './global.css';
+import './globals.css';
 import type { Metadata } from 'next';
 import { Noto_Sans_Lao } from 'next/font/google';
 import { type MetadataConfig } from '@/lib/types';
@@ -20,7 +20,7 @@ const metadataConfig: MetadataConfig = {
     'Translation',
     'Natural Language Processing',
     'Versveso',
-    'Versevo.com',
+    'Versevo dot ai',
     'Transcription',
     'Speech Recognition',
     'Transformer',
@@ -35,7 +35,9 @@ const metadataConfig: MetadataConfig = {
     'Security',
     'Alternative',
     'Versevo AI GitHub',
-    'versevo.ai'
+    'versevo.ai',
+    'versevo lab',
+    'versevo'
   ],
   ogImage: '/shared/Logo.svg',
 };
@@ -48,11 +50,17 @@ export const metadata: Metadata = {
     default: metadataConfig.title,
     template: `%s | ${metadataConfig.title}`,
   },
+
   description: metadataConfig.description,
+
   keywords: metadataConfig.keywords,
+
+  applicationName: metadataConfig.title,
+
   icons: {
     icon: './favicon.ico',
   },
+
   openGraph: {
     title: metadataConfig.title,
     description: metadataConfig.description,
@@ -68,18 +76,31 @@ export const metadata: Metadata = {
       },
     ],
   },
+
   twitter: {
     card: 'summary_large_image',
     title: metadataConfig.title,
     description: metadataConfig.description,
     images: [metadataConfig.ogImage],
   },
+
   appleWebApp: {
     title: metadataConfig.title,
     statusBarStyle: 'default',
     capable: true,
     startupImage: metadataConfig.ogImage,
   },
+
+  robots: {
+    index: true,
+    follow: true,
+    noarchive: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true
+    }
+  }
 };
 
 interface RootLayoutProps {

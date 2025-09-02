@@ -11,6 +11,7 @@ export interface TeamMember {
   readonly image: string;
   readonly alt: string;
   readonly fallback: string;
+  readonly gitHubProfile: string;
 }
 
 export interface AvatarProps extends BaseComponentProps {
