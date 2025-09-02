@@ -50,7 +50,7 @@ const Hero: React.FC<HeroProps> = ({ className, children }) => {
                   )}
                 >
                 <ShinyTextBox className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-[#073E79] hover:duration-400">
-                  <span>🚀 Waitlist Opening Soon</span>
+                  <span>🚀 Waitlist Coming Soon</span>
                 </ShinyTextBox>
               </div>
             </div>
