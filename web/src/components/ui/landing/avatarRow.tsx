@@ -7,9 +7,9 @@ import { type AvatarProps, type TeamMember } from '@/lib/types';
 import { TEAM_MEMBERS, AVATAR_SIZES, ANIMATION_DELAYS } from '@/lib/constants';
 import { scaleIn, staggerContainer } from '@/lib/utils/animations';
 import { cn } from '@/src/lib/utils';
-import { VirtualCursorCard } from '@/src/components/ui/shared/virtualCursorCard';
+/* import { VirtualCursorCard } from '@/src/components/ui/shared/virtualCursorCard';
 import { Card } from '@/src/components/ui/shared/Card';
-import Image from 'next/image';
+import Image from 'next/image'; */
 
 interface AvatarRowProps extends AvatarProps {
   members?: readonly TeamMember[];
