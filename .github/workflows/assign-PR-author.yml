@@ -2,7 +2,7 @@ name: Auto Assign PR Author
 
 on:
   pull_request_target:
-    types: [opened, ready_for_review]
+    types: [opened, ready_for_review, converted_to_draft, reopened]
 
 permissions:
   pull-requests: write
@@ -27,6 +27,18 @@ jobs:
               });
 
               console.log('Assignment successful');
+
+            // Create a beautiful welcome comment
+            const welcomeMessage = `## 🎉 Welcome, @${context.payload.pull_request.user.login}!\n\nThank you for contributing to **Versevo AI**! 🚀 Your pull request has been automatically assigned to you.\n\n### 📋 What's Next?\n- ✅ Ensure all tests pass\n- ✅ Add or update documentation if needed\n- ✅ Request a review when ready\n- ✅ Address any feedback from reviewers\n\n### 🤝 Need Help?\n- Check our [Contributing Guidelines](../CONTRIBUTING.md) for best practices\n- Tag a maintainer if you have questions\n- Join our community discussions\n\nWe appreciate your contribution and look forward to reviewing your work! 💙`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: welcomeMessage
+              });
+
+              console.log('Welcome comment created successfully');
             } catch (error) {
               console.log(`Error details: ${JSON.stringify(error)}`);
               throw error;
