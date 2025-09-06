@@ -146,7 +146,13 @@ jobs:
 
                   // Create first PR reminder
                   const createFirstPrReminderAfter = new Date(issueAssignedAt.getTime() + createPrReminderAfterIssueAssignedMilliseconds);
-                  const firstPrReminder = `Hello @${assignee.login}! 👋 \n\nThank you for taking on this issue. We hope you're making good progress!\n\n**Next Step:** Please open a draft pull request linking this issue when you're ready. This helps us track your progress and allows maintainers to provide early feedback if needed.\n\nFeel free to reach out if you have any questions or need assistance. We're here to help! 😊`;
+                  const firstPrReminder = `Hello @${assignee.login}! 👋
+
+                  Thank you for taking on this issue. We hope you're making good progress!
+
+                  **Next Step:** Please open a draft pull request linking this issue when you're ready. This helps us track your progress and allows maintainers to provide early feedback if needed.
+
+                  Feel free to reach out if you have any questions or need assistance. We're here to help! 😊`;
 
                   const isFirstPrReminderCreated = await createPrReminder(assignee, issue.number, comments, createFirstPrReminderAfter, firstPrReminder);
 
@@ -157,7 +163,18 @@ jobs:
                   // Create final PR reminder
                   const unassignIssueAfter = new Date(issueAssignedAt.getTime() + unassignIssueAfterMilliseconds);
                   const createFinalPrReminderAfter = new Date(issueAssignedAt.getTime() + unassignIssueAfterMilliseconds - createPrReminderBeforeIssueUnassignedMilliseconds);
-                  const finalPrReminder = `Hi @${assignee.login}! 👋\n\nWe wanted to check in on your progress with this issue. To keep our project moving forward, we'll need to see a draft pull request soon.\n\n**⏰ Timeline:** If a draft PR isn't opened by **${unassignIssueAfter.toLocaleDateString()}**, this issue will be automatically unassigned to give other contributors a chance to work on it.\n\n**What you can do:**\n- Open a draft PR linking this issue (even if it's not complete)\n- Comment here if you need more time and let us know your expected timeline\n- Tag a maintainer if you're facing any blockers\n`;\n\n**What you can do:**\n- Open a draft PR linking this issue (even if it's not complete)\n- Comment here if you need more time and let us know your expected timeline\n- Tag a maintainer if you're facing any blockers\n\nWe appreciate your contribution and want to support your success! 🚀`;
+                  const finalPrReminder = `Hi @${assignee.login}! 👋
+
+                  We wanted to check in on your progress with this issue. To keep our project moving forward, we'll need to see a draft pull request soon.
+
+                  **⏰ Timeline:** If a draft PR isn't opened by **${unassignIssueAfter.toLocaleDateString()}**, this issue will be automatically unassigned to give other contributors a chance to work on it.
+
+                  **What you can do:**
+                  - Open a draft PR linking this issue (even if it's not complete)
+                  - Comment here if you need more time and let us know your expected timeline
+                  - Tag a maintainer if you're facing any blockers
+
+                  We appreciate your contribution and want to support your success! 🚀`;
 
                   await createPrReminder(assignee, issue.number, comments, createFinalPrReminderAfter, finalPrReminder);
                 }
