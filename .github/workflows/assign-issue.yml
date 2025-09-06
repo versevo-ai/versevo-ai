@@ -1,0 +1,153 @@
+name: Auto-assign issue on /attempt comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  assign-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comment = context.payload.comment;
+            const issue = context.payload.issue;
+            const owner = 'versevo-ai';
+            const repo = 'versevo-ai';
+            const userMaxConcurrentIssueCount = 5;
+
+            async function listIssueEvents(issueNumber) {
+              const events = [];
+              let page = 1;
+              let hasNextPage = true;
+
+              while (hasNextPage) {
+                const eventsResponse = await github.rest.issues.listEventsForTimeline({
+                  owner,
+                  repo,
+                  issue_number: issueNumber,
+                  per_page: 100,
+                  page
+                });
+
+                events.push(...eventsResponse.data);
+
+                hasNextPage = eventsResponse.headers.link && eventsResponse.headers.link.includes('rel="next"');
+                page++;
+              }
+
+              return events;
+            }
+
+            async function listUserOpenIssuesWithoutActivePullRequest(user) {
+              const issuesWithoutActivePullRequest = [];
+
+              const { data: userOpenIssues } = await github.rest.issues.listForRepo({
+                owner,
+                repo,
+                state: 'open',
+                assignee: user.login,
+                per_page: 100
+              });
+
+              for (const issue of userOpenIssues) {
+                const events = await listIssueEvents(issue.number);
+                const userPullRequestIssues = events
+                  .filter(event => event.event === 'cross-referenced')
+                  .map(event => event.source.issue)
+                  .filter(issue => issue && issue.pull_request && issue.user.login === comment.user.login);
+
+                if(userPullRequestIssues.length === 0) {
+                  issuesWithoutActivePullRequest.push(issue);
+                  continue;
+                }
+
+                for (const pullRequestIssue of userPullRequestIssues) {
+                  const { data: pullRequest } = await github.rest.pulls.get({
+                    owner,
+                    repo,
+                    pull_number: pullRequestIssue.number
+                  });
+
+                  if(pullRequest.draft) {
+                    issuesWithoutActivePullRequest.push(issue);
+                    break;
+                  }
+                }
+              }
+
+              return issuesWithoutActivePullRequest;
+            }
+
+            async function updateProjectStatus(issueNumber) {
+              const projectsResponse = await github.rest.projects.listForRepo({
+                owner,
+                repo,
+                per_page: 100,
+              });
+
+              for (const project of projectsResponse.data) {
+                const columnsResponse = await github.rest.projects.listColumns({
+                  project_id: project.id,
+                  per_page: 100,
+                });
+
+                const inProgressColumn = columnsResponse.data.find(column => column.name === 'In Progress');
+                if (!inProgressColumn) continue;
+
+                const cardsResponse = await github.rest.projects.listCards({
+                  column_id: inProgressColumn.id,
+                  per_page: 100,
+                });
+
+                const issueCardExists = cardsResponse.data.some(card => card.content_id === issueNumber && card.content_type === 'Issue');
+
+                if (!issueCardExists) {
+                  await github.rest.projects.createCard({
+                    column_id: inProgressColumn.id,
+                    content_id: issueNumber,
+                    content_type: 'Issue',
+                  });
+                }
+              }
+            }
+
+            if (comment.body.startsWith('/attempt')) {
+              if (!issue.assignee) {
+                const userActiveIssues = await listUserOpenIssuesWithoutActivePullRequest(comment.user);
+
+                if(userActiveIssues.length < userMaxConcurrentIssueCount) {
+                  await github.rest.issues.addAssignees({
+                    owner,
+                    repo,
+                    issue_number: issue.number,
+                    assignees: [comment.user.login],
+                  });
+
+                  await github.rest.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number: issue.number,
+                    body: `Hello @${comment.user.login}! 👋 This issue has been successfully assigned to you. Thank you for your contribution to the project!`,
+                  });
+
+                  await updateProjectStatus(issue.number);
+                } else {
+                  await github.rest.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number: issue.number,
+                    body: `Hi @${comment.user.login}! 😊 We appreciate your interest in contributing. However, you currently have ${userActiveIssues.length} active issues, and our limit is ${userMaxConcurrentIssueCount} concurrent issues per contributor. Please complete some of your current work or reach out to a maintainer if you'd like to discuss taking on additional tasks.`,
+                  });
+                }
+              } else {
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: issue.number,
+                  body: `Hello @${comment.user.login}! 👋 Thank you for your interest in this issue. However, it's already assigned to another contributor. If you'd like to collaborate or discuss taking over this issue, please tag a maintainer for assistance.`,
+                });
+              }
+            }
